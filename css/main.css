@@ -1,46 +1,58 @@
 /* ==========================================================================
-   Charte graphique & Variables modernes
+   CHARTE GRAPHIQUE — HOUSE OF CODESIGN (HOC)
    ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --bg-color: #f8fafc;
-  --card-bg: #ffffff;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-light: #eff6ff;
+  /* Arrière-plan sombre & Surfaces HOC */
+  --bg-color: #0d1117;          /* Fond sombre signature */
+  --card-bg: #161b22;         /* Cartes anthracite */
+  --card-bg-hover: #1c2128;   /* Survol carte */
+  --border-color: #30363d;     /* Bordures fines sombres */
 
-  --badge-outils: #0284c7;
-  --badge-outils-bg: #e0f2fe;
-  
-  --badge-pres: #7c3aed;
-  --badge-pres-bg: #f3e8ff;
-  
-  --badge-docs: #059669;
-  --badge-docs-bg: #d1fae5;
+  /* Typographies & Couleurs de texte */
+  --text-primary: #f0f6fc;    /* Blanc/Gris clair pour les titres */
+  --text-secondary: #8b949e;  /* Textes explicatifs */
+  --text-muted: #6e7681;      /* Textes secondaires */
 
-  --border-color: #e2e8f0;
-  --radius-lg: 12px;
+  /* Couleurs d'Accentuation HOC (Orange / Corail Vif & Bleu Tech) */
+  --primary: #ff5e3a;         /* Orange Vif / Accent HOC */
+  --primary-hover: #ff785a;   /* Orange légèrement plus lumineux */
+  --primary-light: rgba(255, 94, 58, 0.12); /* Halo orange translucide */
+
+  /* Badges Catégories */
+  --badge-outils: #38bdf8;
+  --badge-outils-bg: rgba(56, 189, 248, 0.12);
+  
+  --badge-pres: #c084fc;
+  --badge-pres-bg: rgba(192, 132, 252, 0.12);
+  
+  --badge-docs: #4ade80;
+  --badge-docs-bg: rgba(74, 222, 128, 0.12);
+
+  /* Effets & Rayons */
+  --radius-lg: 14px;
   --radius-pill: 9999px;
   
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.07);
-  --shadow-hover: 0 10px 25px rgba(37, 99, 235, 0.12);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 94, 58, 0.15);
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Réinitialisation de base */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-primary);
   margin: 0;
   padding: 2.5rem 1.5rem;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 .container {
@@ -52,7 +64,7 @@ body {
    Header / En-tête
    ========================================================================== */
 header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
 }
 
@@ -60,21 +72,28 @@ header .logo-badge {
   display: inline-block;
   background: var(--primary-light);
   color: var(--primary);
-  font-weight: 600;
-  font-size: 0.85rem;
+  border: 1px solid rgba(255, 94, 58, 0.25);
+  font-weight: 700;
+  font-size: 0.8rem;
   padding: 0.35rem 1rem;
   border-radius: var(--radius-pill);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 header h1 {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.75rem 0;
   color: var(--text-primary);
   letter-spacing: -0.03em;
+}
+
+/* Point orange signature HOC à la fin des grands titres si souhaité */
+header h1::after {
+  content: '.';
+  color: var(--primary);
 }
 
 header p {
@@ -102,24 +121,29 @@ header p {
 
 .search-box input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  padding: 0.85rem 1rem 0.85rem 2.85rem;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-pill);
   font-size: 0.95rem;
-  background-color: #ffffff;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
   box-shadow: var(--shadow-sm);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: var(--transition);
+}
+
+.search-box input::placeholder {
+  color: var(--text-muted);
 }
 
 .search-box input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 3px var(--primary-light);
 }
 
 .search-box svg {
   position: absolute;
-  left: 1rem;
+  left: 1.1rem;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
@@ -127,35 +151,38 @@ header p {
   height: 18px;
 }
 
-/* Barre d'onglets (Tabs) */
-.tabs {
-  display: flex;
-  background: #e2e8f0;
-  padding: 0.3rem;
+/* Barre d'onglets (Tabs & View Switcher) */
+.tabs, .view-switcher {
+  display: inline-flex;
+  background: #161b22;
+  padding: 0.35rem;
   border-radius: var(--radius-pill);
-  gap: 0.25rem;
+  border: 1px solid var(--border-color);
+  gap: 0.3rem;
+  justify-content: center;
 }
 
-.tab-btn {
+.tab-btn, .switch-btn {
   border: none;
   background: transparent;
   padding: 0.6rem 1.4rem;
-  font-size: 0.925rem;
+  font-family: inherit;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-secondary);
   border-radius: var(--radius-pill);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--transition);
 }
 
-.tab-btn:hover {
+.tab-btn:hover, .switch-btn:hover {
   color: var(--text-primary);
 }
 
-.tab-btn.active {
-  background: #ffffff;
-  color: var(--primary);
-  box-shadow: var(--shadow-sm);
+.tab-btn.active, .switch-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(255, 94, 58, 0.3);
 }
 
 /* ==========================================================================
@@ -179,14 +206,16 @@ header p {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s, border-color 0.25s;
+  transition: var(--transition);
   position: relative;
+  overflow: hidden;
 }
 
 .card:hover {
   transform: translateY(-4px);
+  background-color: var(--card-bg-hover);
   box-shadow: var(--shadow-hover);
-  border-color: var(--primary);
+  border-color: rgba(255, 94, 58, 0.4);
 }
 
 .card-header {
@@ -198,27 +227,30 @@ header p {
 
 /* Badges par catégorie */
 .badge {
-  font-size: 0.75rem;
+  font-size: 0.725rem;
   font-weight: 700;
-  padding: 0.25rem 0.65rem;
+  padding: 0.3rem 0.75rem;
   border-radius: var(--radius-pill);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .badge-outils {
   color: var(--badge-outils);
   background: var(--badge-outils-bg);
+  border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
 .badge-presentations {
   color: var(--badge-pres);
   background: var(--badge-pres-bg);
+  border: 1px solid rgba(192, 132, 252, 0.2);
 }
 
 .badge-documents {
   color: var(--badge-docs);
   background: var(--badge-docs-bg);
+  border: 1px solid rgba(74, 222, 128, 0.2);
 }
 
 .card-body h3 {
@@ -226,7 +258,7 @@ header p {
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
-  transition: color 0.2s;
+  transition: var(--transition);
 }
 
 .card:hover .card-body h3 {
@@ -237,26 +269,33 @@ header p {
   margin: 0;
   font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .card-footer {
-  margin-top: 1.25rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid #f1f5f9;
+  margin-top: 1.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-size: 0.825rem;
   color: var(--text-muted);
+  font-weight: 500;
 }
 
 .card-link-text {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary);
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  transition: var(--transition);
+}
+
+.card:hover .card-link-text {
+  transform: translateX(4px);
+  color: var(--primary-hover);
 }
 
 /* État vide / Aucun résultat */
@@ -266,28 +305,4 @@ header p {
   color: var(--text-muted);
   grid-column: 1 / -1;
   display: none;
-}
-
-/* Style des boutons d'onglets */
-.view-switcher {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  justify-content: center;
-}
-
-.switch-btn {
-  padding: 0.6rem 1.2rem;
-  border: 1px solid var(--border, #e2e8f0);
-  background: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.switch-btn.active {
-  background: var(--primary, #2563eb);
-  color: white;
-  border-color: var(--primary, #2563eb);
 }
