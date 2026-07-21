@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - Formation IA Avancée</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            
+            --presentation-color: #a855f7;
+            --presentation-bg: rgba(168, 85, 247, 0.15);
+            --pause-color: #eab308;
+            --pause-bg: rgba(234, 179, 8, 0.15);
+            --atelier-color: #f97316;
+            --atelier-bg: rgba(249, 115, 22, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .current-time {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: var(--card-bg);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        /* 2-Column Layout */
+        .columns-container {
+            flex-grow: 1;
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-spacing: 20px 0;
+            margin: 0 -20px;
+        }
+
+        .column-half {
+            display: table-cell;
+            vertical-align: top;
+            height: 100%;
+        }
+
+        .column-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding-left: 5px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            height: calc(100vh - 120px);
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* Custom scrollbar to keep it clean */
+        .dashboard-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .dashboard-container::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        .dashboard-container::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        .row-item {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 16px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .row-item:hover {
+            transform: translateX(4px);
+            border-color: #475569;
+        }
+
+        .time-col {
+            width: 105px;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-color);
+            flex-shrink: 0;
+        }
+
+        .duration-col {
+            width: 65px;
+            font-size: 12px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .title-col {
+            flex-grow: 1;
+            padding-right: 15px;
+        }
+
+        .main-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .type-col {
+            width: 125px;
+            flex-shrink: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            width: 115px;
+        }
+
+        .action-col {
+            width: 110px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: none;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        /* Color configurations */
+        .presentation {
+            border-left: 4px solid var(--presentation-color);
+        }
+        .presentation .badge {
+            background: var(--presentation-bg);
+            color: #c084fc;
+        }
+        .presentation .btn {
+            background: var(--presentation-color);
+            color: white;
+        }
+        .presentation .btn:hover {
+            background: #9333ea;
+        }
+
+        .pause {
+            border-left: 4px solid var(--pause-color);
+        }
+        .pause .badge {
+            background: var(--pause-bg);
+            color: #fde047;
+        }
+        .pause .btn {
+            background: var(--pause-color);
+            color: #0f172a;
+        }
+        .pause .btn:hover {
+            background: #ca8a04;
+        }
+
+        .atelier {
+            border-left: 4px solid var(--atelier-color);
+        }
+        .atelier .badge {
+            background: var(--atelier-bg);
+            color: #fdba74;
+        }
+        .atelier .btn {
+            background: rgba(249, 115, 22, 0.2);
+            color: #fdba74;
+            border: 1px solid rgba(249, 115, 22, 0.4);
+        }
+        .atelier .btn:hover {
+            background: rgba(249, 115, 22, 0.3);
+        }
+
+        /* Modal / Pop-up Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background: #1e293b;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: modalScale 0.2s ease-out;
+        }
+
+        @keyframes modalScale {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-body {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: #334155;
+            color: var(--text-color);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            float: right;
+        }
+
+        .modal-close:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>Sommaire Interactif - Session 2</h1>
+            <div class="legend" style="margin-top: 5px;">
+                <div class="legend-item">
+                    <div class="legend-badge" style="background: var(--presentation-color)"></div>
+                    <span style="color: var(--text-muted)">Présentation</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-badge" style="background: var(--pause-color)"></div>
+                    <span style="color: var(--text-muted)">Pause</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-badge" style="background: var(--atelier-color)"></div>
+                    <span style="color: var(--text-muted)">Atelier / Exercice</span>
+                </div>
+            </div>
+        </div>
+        <div class="current-time" id="clock">00:00</div>
+    </header>
+
+    <div class="columns-container">
+        <!-- MATIN COLUMN -->
+        <div class="column-half">
+            <div class="column-title">☀️ Matinée</div>
+            <div class="dashboard-container">
+                <!-- 09:30 -->
+                <div class="row-item pause">
+                    <div class="time-col">09:30 - 10:00</div>
+                    <div class="duration-col">30 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Accueil café</div>
+                        <div class="subtitle">Plage d'arrivée des participants</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Pause</span></div>
+                    <div class="action-col">
+                        <button class="btn" onclick="openModal('Accueil café', 'Bienvenue ! Profitez de ce moment pour vous installer, prendre un café et échanger avant le lancement de la journée.')">ℹ️ Infos</button>
+                    </div>
+                </div>
+
+                <!-- 10:00 -->
+                <div class="row-item presentation">
+                    <div class="time-col">10:00 - 10:10</div>
+                    <div class="duration-col">10 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Intro HOC</div>
+                        <div class="subtitle">Une présentation de HOC</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Présentation</span></div>
+                    <div class="action-col">
+                        <a href="#" class="btn">🔗 Lien</a>
+                    </div>
+                </div>
+
+                <!-- 10:10 -->
+                <div class="row-item presentation">
+                    <div class="time-col">10:10 - 10:20</div>
+                    <div class="duration-col">10 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Intro journée</div>
+                        <div class="subtitle">Introduction & Présentation du programme</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Présentation</span></div>
+                    <div class="action-col">
+                        <a href="#" class="btn">🔗 Lien</a>
+                    </div>
+                </div>
+
+                <!-- 10:20 -->
+                <div class="row-item presentation">
+                    <div class="time-col">10:20 - 11:00</div>
+                    <div class="duration-col">40 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Mémoire & Deeplearning</div>
+                        <div class="subtitle">Présentation théorique et architectures</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Présentation</span></div>
+                    <div class="action-col">
+                        <a href="#" class="btn">🔗 Lien</a>
+                    </div>
+                </div>
+
+                <!-- 11:00 -->
+                <div class="row-item atelier">
+                    <div class="time-col">11:00 - 11:20</div>
+                    <div class="duration-col">20 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Gemini V3</div>
+                        <div class="subtitle">Création de Gems personnalisés</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Atelier / Ex</span></div>
+                    <div class="action-col">
+                        <button class="btn" onclick="openModal('Gemini V3 : Création de Gems', '<strong>Exercice pratique :</strong><br>Apprenez à structurer des instructions systèmes personnalisées (Gems) pour automatiser vos tâches récurrentes.')">💬 Pop-up</button>
+                    </div>
+                </div>
+
+                <!-- 11:20 -->
+                <div class="row-item atelier">
+                    <div class="time-col">11:20 - 12:00</div>
+                    <div class="duration-col">40 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Découverte de l'IA locale</div>
+                        <div class="subtitle">Téléchargement & Tests de modèles autonomes</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Atelier / Ex</span></div>
+                    <div class="action-col">
+                        <button class="btn" onclick="openModal('IA Locale', '<strong>Exercice pratique :</strong><br>Manipulation de modèles en local. Analyse des avantages (confidentialité, coût) et limites matérielles.')">💬 Pop-up</button>
+                    </div>
+                </div>
+
+                <!-- 12:00 -->
+                <div class="row-item pause">
+                    <div class="time-col">12:00 - 12:15</div>
+                    <div class="duration-col">15 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Pause</div>
+                        <div class="subtitle">Pause de milieu de matinée</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Pause</span></div>
+                    <div class="action-col">
+                        <button class="btn" onclick="openModal('Pause', 'Courte pause de déconnexion avant l'atelier physique de groupe !')">⏱️ Timer</button>
+                    </div>
+                </div>
+
+                <!-- 12:15 -->
+                <div class="row-item atelier">
+                    <div class="time-col">12:15 - 13:00</div>
+                    <div class="duration-col">45 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Atelier : Cartographie des Risques & Éthique</div>
+                        <div class="subtitle">Challenge analogique (Post-its & Tableaux physiques)</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Atelier / Ex</span></div>
+                    <div class="action-col">
+                        <button class="btn" onclick="openModal('Atelier : Cartographie Éthique', '<strong>Activité de groupe (Hors écran) :</strong><br><br><strong>Consigne :</strong> Répartis par équipes autour de grands tableaux blancs, listez et catégorisez les risques éthiques et techniques liés au Deeplearning au sein de vos métiers à l'aide de Post-its de couleur.<br><br>💡 <em>Lâchez les claviers pour ce sprint de réflexion collective !</em>')">💬 Pop-up</button>
+                    </div>
+                </div>
+
+                <!-- 13:00 -->
+                <div class="row-item atelier">
+                    <div class="time-col">13:00 - 13:20</div>
+                    <div class="duration-col">20 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Restitution : Le Grand Débat</div>
+                        <div class="subtitle">Mise en commun orale des équipes</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Atelier / Ex</span></div>
+                    <div class="action-col">
+                        <button class="btn" onclick="openModal('Restitution Débat', '<strong>Restitution collective :</strong><br>Chaque porte-parole d'équipe dispose de 3 minutes pour pitcher sa cartographie des risques devant le groupe.')">💬 Pop-up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AFTERNOON COLUMN -->
+        <div class="column-half">
+            <div class="column-title">🌌 Après-midi</div>
+            <div class="dashboard-container">
+                <!-- 14:20 -->
+                <div class="row-item presentation">
+                    <div class="time-col">14:20 - 15:20</div>
+                    <div class="duration-col">1 h</div>
+                    <div class="title-col">
+                        <div class="main-title">Workflows & Agents</div>
+                        <div class="subtitle">Présentation des systèmes multi-agents complexes</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Présentation</span></div>
+                    <div class="action-col">
+                        <a href="#" class="btn">🔗 Lien</a>
+                    </div>
+                </div>
+
+                <!-- 15:20 -->
+                <div class="row-item atelier">
+                    <div class="time-col">15:20 - 15:40</div>
+                    <div class="duration-col">20 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Gemini V4</div>
+                        <div class="subtitle">Création et configuration d'une clé API</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Atelier / Ex</span></div>
+                    <div class="action-col">
+                        <button class="btn" onclick="openModal('Gemini V4', '<strong>Exercice pratique :</strong><br>Génération d'une clé d'accès API sécurisée pour préparer l'intégration dans des automatisations tierces.')">💬 Pop-up</button>
+                    </div>
+                </div>
+
+                <!-- 15:40 -->
+                <div class="row-item pause">
+                    <div class="time-col">15:40 - 15:55</div>
+                    <div class="duration-col">15 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Pause</div>
+                        <div class="subtitle">Pause fraîcheur de l'après-midi</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Pause</span></div>
+                    <div class="action-col">
+                        <button class="btn" onclick="openModal('Pause', 'Profitez-en pour vous aérer avant le grand atelier de fin de journée !')">⏱️ Timer</button>
+                    </div>
+                </div>
+
+                <!-- 15:55 -->
+                <div class="row-item atelier">
+                    <div class="time-col">15:55 - 17:25</div>
+                    <div class="duration-col">1h 30</div>
+                    <div class="title-col">
+                        <div class="main-title">Imagination & Création</div>
+                        <div class="subtitle">Conception pas à pas d'un workflow automatisé</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Atelier / Ex</span></div>
+                    <div class="action-col">
+                        <button class="btn" onclick="openModal('Imagination & Création', '<strong>Grand Projet Final :</strong><br>Création complète de bout en bout d'un flux de travail automatisé associant plusieurs agents ou APIs pour répondre à un besoin métier concret.')">💬 Pop-up</button>
+                    </div>
+                </div>
+
+                <!-- 17:25 -->
+                <div class="row-item presentation">
+                    <div class="time-col">17:25 - 17:30</div>
+                    <div class="duration-col">5 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Mot de fin</div>
+                        <div class="subtitle">Débriefing final, questions libres et clôture</div>
+                    </div>
+                    <div class="type-col"><span class="badge">Présentation</span></div>
+                    <div class="action-col">
+                        <a href="#" class="btn">🔗 Lien</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Box -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <div class="modal-title" id="modalTitle">Titre</div>
+            <div class="modal-body" id="modalBody">Description</div>
+            <button class="modal-close" onclick="closeModal()">Fermer</button>
+        </div>
+    </div>
+
+    <script>
+        // Real-time clock refresh for the presenter board
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = hours + ':' + minutes;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Modal triggers
+        function openModal(title, bodyText) {
+            document.getElementById('modalTitle').innerHTML = title;
+            document.getElementById('modalBody').innerHTML = bodyText;
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
