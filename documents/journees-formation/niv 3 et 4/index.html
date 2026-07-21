@@ -7,7 +7,7 @@
     <!-- Import du CSS centralisé House of Codesign -->
     <link rel="stylesheet" href="../../../css/main.css">
     <style>
-        /* Variables spécifiques au tableau de bord (étendues depuis main.css) */
+        /* Variables spécifiques au tableau de bord */
         :root {
             --badge-pres-color: #c084fc;
             --badge-pres-bg: rgba(192, 132, 252, 0.12);
@@ -522,20 +522,47 @@
                     </div>
                     <div class="type-col"><span class="badge-dash">Pause</span></div>
                     <div class="action-col">
-                        <button class="btn-dash" onclick="openModal('Pause', 'Profitez-en pour vous aérer avant le grand atelier de fin de journée !')">⏱️ Timer</button>
+                        <button class="btn-dash" onclick="openModal('Pause', 'Profitez-en pour vous aérer avant la séquence finale de création !')">⏱️ Timer</button>
+                    </div>
+                </div>
+
+                <!-- ATELIER DÉCOUPÉ EN 3 ÉTAPES -->
+                <div class="row-item atelier">
+                    <div class="time-col">15:35 - 15:55</div>
+                    <div class="duration-col">20 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Projet : Idéation</div>
+                        <div class="subtitle">Atelier collectif, réflexion & cadrage des besoins métiers</div>
+                    </div>
+                    <div class="type-col"><span class="badge-dash">Atelier / Ex</span></div>
+                    <div class="action-col">
+                        <button class="btn-dash" onclick="openModal('Projet : Idéation', '<strong>Phase 1 — Idéation (en groupe) :</strong><br>Brainstorming et définition du cas d\'usage métier. Choix de l\'architecture du workflow et des agents/APIs à solliciter.')">💬 Pop-up</button>
                     </div>
                 </div>
 
                 <div class="row-item atelier">
-                    <div class="time-col">15:35 - 17:05</div>
-                    <div class="duration-col">1h 30</div>
+                    <div class="time-col">15:55 - 16:40</div>
+                    <div class="duration-col">45 min</div>
                     <div class="title-col">
-                        <div class="main-title">Imagination & Création</div>
-                        <div class="subtitle">Conception pas à pas d'un workflow automatisé</div>
+                        <div class="main-title">Projet : Création</div>
+                        <div class="subtitle">Conception pratique du workflow (seul ou à plusieurs)</div>
                     </div>
                     <div class="type-col"><span class="badge-dash">Atelier / Ex</span></div>
                     <div class="action-col">
-                        <button class="btn-dash" onclick="openModal('Imagination & Création', '<strong>Grand Projet Final :</strong><br>Création complète de bout en bout d\'un flux de travail automatisé associant plusieurs agents ou APIs pour répondre à un besoin métier concret.')">💬 Pop-up</button>
+                        <button class="btn-dash" onclick="openModal('Projet : Création', '<strong>Phase 2 — Création :</strong><br>Mise en place pratique du workflow automatisé. Assemblage des briques, configuration des clés API et tests en conditions réelles.')">💬 Pop-up</button>
+                    </div>
+                </div>
+
+                <div class="row-item atelier">
+                    <div class="time-col">16:40 - 17:05</div>
+                    <div class="duration-col">25 min</div>
+                    <div class="title-col">
+                        <div class="main-title">Projet : Restitution</div>
+                        <div class="subtitle">Démos des pépites, partage des réussites et blocages</div>
+                    </div>
+                    <div class="type-col"><span class="badge-dash">Atelier / Ex</span></div>
+                    <div class="action-col">
+                        <button class="btn-dash" onclick="openModal('Projet : Restitution', '<strong>Phase 3 — Restitution & Échanges :</strong><br>Présentation rapide des résultats marquants, mise en avant des meilleures solutions trouvées et discussion sur les difficultés rencontrées.')">💬 Pop-up</button>
                     </div>
                 </div>
 
