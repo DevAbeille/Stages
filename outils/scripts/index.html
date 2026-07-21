@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipeline d'Automatisation Google Drive</title>
+  <link rel="stylesheet" href="../../css/main.css">
+  <style>
+    .pipeline-step {
+      background: #ffffff;
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .step-number {
+      background: var(--primary, #2563eb);
+      color: white;
+      font-weight: bold;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .step-title {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+    .links-block {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border, #e2e8f0);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-script {
+      background-color: #f1f5f9;
+      color: #334155;
+    }
+    .btn-script:hover {
+      background-color: #e2e8f0;
+    }
+    .btn-target {
+      background-color: #eff6ff;
+      color: #1e40af;
+    }
+    .btn-target:hover {
+      background-color: #dbeafe;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- En-tête -->
+    <header class="header">
+      <a href="../../index.html" style="text-decoration:none; color:var(--primary, #2563eb); font-weight:600;">&larr; Retour au Hub Principal</a>
+      <h1 style="margin-top: 1rem;">Automatisation Google Drive & Reporting</h1>
+      <p>Un ensemble de 3 scripts interconnectés pour automatiser la création de dossiers, la centralisation des données et la génération de présentations clients.</p>
+    </header>
+
+    <main>
+
+      <!-- Résumé du Workflow -->
+      <section style="margin-bottom: 2rem;">
+        <div class="pipeline-step" style="background-color: #f8fafc; border-left: 4px solid var(--primary, #2563eb);">
+          <h2 style="margin-top: 0;">💡 À quoi sert ce pipeline ?</h2>
+          <p>Plutôt que d'effectuer à la main la création de répertoires, la saisie de suivis et la mise en page de diapositives, nous avons mis en place une chaîne automatisée en 3 étapes. Elle garantit l'homogénéité des dossiers, gagne un temps précieux et élimine les erreurs de saisie.</p>
+        </div>
+      </section>
+
+      <!-- ÉTAPE 1 -->
+      <div class="pipeline-step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h2 class="step-title">Initialisation du Projet & Structuration</h2>
+        </div>
+        
+        <p><strong>En résumé :</strong> Ce script génère automatiquement l'arborescence complète du nouveau projet dans Google Drive avec tous ses sous-dossiers standards, puis enregistre l'ouverture du projet dans le fichier de suivi général.</p>
+        
+        <ul>
+          <li><strong>Ce qu'il fait :</strong> Il crée l'ensemble des sous-dossiers requis et ajoute automatiquement une nouvelle ligne récapitulative dans le Google Sheet central.</li>
+          <li><strong>Gain :</strong> Plus besoin de copier-coller des dossiers à la main ni de risquer d'oublier d'enregistrer le projet dans le suivi.</li>
+        </ul>
+
+        <div class="links-block">
+          <!-- Remplace les # par tes vrais liens Google Drive / Apps Script -->
+          <a href="#" target="_blank" class="btn-link btn-script">💻 Voir le Script d'initialisation</a>
+          <a href="#" target="_blank" class="btn-link btn-target">📊 Ouvrir le Google Sheet de suivi central</a>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 2 -->
+      <div class="pipeline-step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h2 class="step-title">Scan des Dossiers & Fichier Synthèse</h2>
+        </div>
+        
+        <p><strong>En résumé :</strong> Le script parcourt automatiquement tous les dossiers de projets existants pour récupérer l'ensemble des données à jour et les consolider au même endroit.</p>
+        
+        <ul>
+          <li><strong>Ce qu'il fait :</strong> Il analyse l'arborescence du projet et crée, à chaque analyse, un nouvel onglet daté dans le "Fichier Synthèse".</li>
+          <li><strong>Gain :</strong> Une vue panoramique et historisée de tous les projets, actualisée sans aucun travail de compilation manuel.</li>
+        </ul>
+
+        <div class="links-block">
+          <a href="#" target="_blank" class="btn-link btn-script">💻 Voir le Script de consolidation</a>
+          <a href="#" target="_blank" class="btn-link btn-target">📑 Ouvrir le Fichier Synthèse</a>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 3 -->
+      <div class="pipeline-step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h2 class="step-title">Génération Automatique de la Slide Projet</h2>
+        </div>
+        
+        <p><strong>En résumé :</strong> Ce script extrait les informations clés du Fichier Synthèse et vient remplir automatiquement un modèle de présentation Google Slides officiel.</p>
+        
+        <ul>
+          <li><strong>Ce qu'il fait :</strong> Il repère des balises spécifiques (ex: <code>{{NomProjet}}</code>, <code>{{Statut}}</code>) dans une diapositive de référence et les remplace par les données réelles du projet.</li>
+          <li><strong>Gain :</strong> Un support de présentation prêt à être projeté ou envoyé aux parties prenantes en un instant.</li>
+        </ul>
+
+        <div class="links-block">
+          <a href="#" target="_blank" class="btn-link btn-script">💻 Voir le Script de génération Slides</a>
+          <a href="#" target="_blank" class="btn-link btn-target">🖼️ Ouvrir le Modèle Google Slides de référence</a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
