@@ -23,6 +23,7 @@
             flex-direction: column;
             overflow: hidden;
             padding: 1.5rem;
+            box-sizing: border-box;
         }
 
         /* Top Bar / Header */
@@ -30,7 +31,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--border-color);
             flex-shrink: 0;
@@ -79,19 +80,19 @@
             border-radius: 3px;
         }
 
-        /* Disposition en 2 colonnes */
+        /* Disposition en 2 colonnes dynamique */
         .columns-container {
-            flex-grow: 1;
+            flex: 1;
+            min-height: 0;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            height: calc(100vh - 110px);
-            overflow: hidden;
         }
 
         .column-half {
             display: flex;
             flex-direction: column;
+            min-height: 0;
             height: 100%;
         }
 
@@ -103,6 +104,7 @@
             padding-left: 0.25rem;
             letter-spacing: 0.05em;
             text-transform: uppercase;
+            flex-shrink: 0;
         }
 
         .dashboard-container {
@@ -110,13 +112,14 @@
             flex-direction: column;
             gap: 0.5rem;
             overflow-y: auto;
-            padding-right: 0.35rem;
-            height: 100%;
+            padding-right: 0.5rem;
+            flex: 1;
+            min-height: 0;
         }
 
         /* Custom Scrollbar */
         .dashboard-container::-webkit-scrollbar {
-            width: 5px;
+            width: 6px;
         }
         .dashboard-container::-webkit-scrollbar-track {
             background: transparent;
@@ -124,6 +127,9 @@
         .dashboard-container::-webkit-scrollbar-thumb {
             background: var(--border-color);
             border-radius: 9999px;
+        }
+        .dashboard-container::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
         }
 
         /* Ligne de programme */
@@ -136,6 +142,7 @@
             padding: 0.75rem 1rem;
             transition: var(--transition);
             position: relative;
+            flex-shrink: 0;
         }
 
         .row-item:hover {
@@ -217,7 +224,7 @@
             width: 100%;
         }
 
-        /* Variations Thématiques des Cartes */
+        /* Variations Thématiques */
         .presentation {
             border-left: 3px solid var(--badge-pres-color);
         }
@@ -272,7 +279,7 @@
             color: #ffffff;
         }
 
-        /* Style Pop-up Modale HOC */
+        /* Modale Pop-up */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -416,7 +423,7 @@
                     </div>
                     <div class="type-col"><span class="badge-dash">Présentation</span></div>
                     <div class="action-col">
-                        <a href="../presentations/histoire-ia/" class="btn-dash">🔗 Lien</a>
+                        <a href="../../../presentations/histoire-ia/" class="btn-dash">🔗 Lien</a>
                     </div>
                 </div>
 
@@ -471,6 +478,7 @@
                         <a href="#" class="btn-dash">🔗 Lien</a>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -479,7 +487,6 @@
             <div class="column-title">🌌 Après-midi</div>
             <div class="dashboard-container">
                 
-                <!-- Présentation réajustée à 40 min -->
                 <div class="row-item presentation">
                     <div class="time-col">14:00 - 14:40</div>
                     <div class="duration-col">40 min</div>
@@ -493,7 +500,6 @@
                     </div>
                 </div>
 
-                <!-- Nouvel Energizer inséré (20 min) -->
                 <div class="row-item atelier">
                     <div class="time-col">14:40 - 15:00</div>
                     <div class="duration-col">20 min</div>
@@ -520,6 +526,7 @@
                     </div>
                 </div>
 
+                <!-- NotebookLM avec lien vers la prez dans la pop-up -->
                 <div class="row-item atelier">
                     <div class="time-col">15:20 - 16:00</div>
                     <div class="duration-col">40 min</div>
@@ -529,7 +536,7 @@
                     </div>
                     <div class="type-col"><span class="badge-dash">Atelier / Ex</span></div>
                     <div class="action-col">
-                        <button class="btn-dash" onclick="openModal('NotebookLM', '<strong>Exercice de configuration :</strong><br>Importez vos documents de travail dans NotebookLM et apprenez à générer des bases de connaissances collaboratives.')">💬 Pop-up</button>
+                        <button class="btn-dash" onclick="openModal('NotebookLM', '<strong>Exercice de configuration :</strong><br>Importez vos documents de travail dans NotebookLM et apprenez à générer des bases de connaissances collaboratives.<br><br><a href=\'../../../presentations/notebooklm/\' style=\'display:inline-block; padding:0.5rem 1rem; background:var(--primary); color:white; border-radius:6px; text-decoration:none; font-weight:bold; font-size:0.85rem;\'>📊 Ouvrir la présentation NotebookLM ↗</a>')">💬 Pop-up</button>
                     </div>
                 </div>
 
