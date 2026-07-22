@@ -54,7 +54,7 @@
       border-color: #38bdf8;
     }
 
-    /* Badge intégrant le lien du jeu */
+    /* Badge interactif vers le jeu */
     .header-badge-link {
       display: inline-flex;
       align-items: center;
@@ -304,7 +304,6 @@
 
     <!-- Header Principal -->
     <header>
-      <!-- Le bouton/badge interactif bascule vers le jeu -->
       <a href="javascript:void(0)" class="header-badge-link" onclick="switchView('quiz')" id="topGameLink">
         🎮 Tester ses connaissances (Jeu des usages) ↗
       </a>
@@ -325,7 +324,7 @@
         </div>
       </div>
 
-      <!-- Bloc Filtres Harmonisés (Sélection unique) -->
+      <!-- Bloc Filtres Harmonisés -->
       <div class="filters-wrapper">
         <!-- Ligne Éditeur -->
         <div class="filter-row">
@@ -338,14 +337,15 @@
           </div>
         </div>
 
-        <!-- Ligne Audience -->
+        <!-- Ligne Usage (Sélection unique & Tag unique par carte) -->
         <div class="filter-row">
-          <span class="filter-label">Audience</span>
+          <span class="filter-label">Usage</span>
           <div class="view-switcher" id="audienceFilters">
             <button class="switch-btn active" onclick="filterAudience('ALL')">Tous</button>
-            <button class="switch-btn" onclick="filterAudience('utilisateur')">👤 Utilisateur / Grand Public</button>
-            <button class="switch-btn" onclick="filterAudience('dev')">💻 Dev / Tech</button>
-            <button class="switch-btn" onclick="filterAudience('explorateur')">🚀 Explorateur / Prototypage</button>
+            <button class="switch-btn" onclick="filterAudience('grand-public')">👤 Grand Public</button>
+            <button class="switch-btn" onclick="filterAudience('dev')">💻 Dev</button>
+            <button class="switch-btn" onclick="filterAudience('visuels')">🎨 Visuels</button>
+            <button class="switch-btn" onclick="filterAudience('explorateur')">🚀 Explorateur</button>
           </div>
         </div>
       </div>
@@ -354,7 +354,7 @@
       <div class="tools-grid" id="toolsGrid">
 
         <!-- GOOGLE -->
-        <div class="tool-card" data-editor="Google" data-audience="utilisateur explorateur" data-search="gemini app google grand public web app mobile">
+        <div class="tool-card" data-editor="Google" data-audience="grand-public" data-search="gemini app google grand public web app mobile">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -362,7 +362,7 @@
             </div>
             <div class="tool-card-title">Gemini App (Gratuit / Pro / Ultra)</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Grand Public & Curieux</span>
+              <span class="meta-item">👤 Grand Public</span>
               <span class="meta-item">Web + Mobile</span>
             </div>
           </div>
@@ -371,7 +371,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-audience="utilisateur explorateur" data-search="google search labs live in search recherche web mobile">
+        <div class="tool-card" data-editor="Google" data-audience="explorateur" data-search="google search labs live in search recherche web mobile">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -379,7 +379,7 @@
             </div>
             <div class="tool-card-title">Google Search Labs / Live in Search</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Grand Public & Curieux</span>
+              <span class="meta-item">🚀 Explorateur</span>
               <span class="meta-item">Mobile + Web</span>
             </div>
           </div>
@@ -388,7 +388,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-audience="utilisateur" data-search="gemini workspace docs gmail sheets productivité pme">
+        <div class="tool-card" data-editor="Google" data-audience="grand-public" data-search="gemini workspace docs gmail sheets productivité pme">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -396,7 +396,7 @@
             </div>
             <div class="tool-card-title">Gemini pour Google Workspace</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Productivité & PME</span>
+              <span class="meta-item">👤 Grand Public</span>
               <span class="meta-item">Intégré Web</span>
             </div>
           </div>
@@ -405,7 +405,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-audience="utilisateur explorateur" data-search="notebooklm recherche synthèse audio overviews podcasts web">
+        <div class="tool-card" data-editor="Google" data-audience="explorateur" data-search="notebooklm recherche synthèse audio overviews podcasts web">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -413,7 +413,7 @@
             </div>
             <div class="tool-card-title">NotebookLM</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Recherche & Synthèse</span>
+              <span class="meta-item">🚀 Explorateur</span>
               <span class="meta-item">Navigateur Web</span>
             </div>
           </div>
@@ -422,7 +422,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-audience="utilisateur explorateur" data-search="gemini spark project mariner cloud agent processus entreprise">
+        <div class="tool-card" data-editor="Google" data-audience="explorateur" data-search="gemini spark project mariner cloud agent processus entreprise">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -430,7 +430,7 @@
             </div>
             <div class="tool-card-title">Gemini Spark (Ex-Project Mariner)</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Entreprises & Processus</span>
+              <span class="meta-item">🚀 Explorateur</span>
               <span class="meta-item">Cloud Web</span>
             </div>
           </div>
@@ -439,7 +439,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-audience="explorateur utilisateur" data-search="flow creation labs veo imagen lyria vidéo hd design audio">
+        <div class="tool-card" data-editor="Google" data-audience="visuels" data-search="flow creation labs veo imagen lyria vidéo hd design audio">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -447,7 +447,7 @@
             </div>
             <div class="tool-card-title">Flow / Creation Labs (Veo, Imagen)</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Créatifs & Designers</span>
+              <span class="meta-item">🎨 Visuels</span>
               <span class="meta-item">Portails Web</span>
             </div>
           </div>
@@ -456,7 +456,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-audience="dev explorateur" data-search="google ai studio développeurs prototypage api invites web">
+        <div class="tool-card" data-editor="Google" data-audience="dev" data-search="google ai studio développeurs prototypage api invites web">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -464,7 +464,7 @@
             </div>
             <div class="tool-card-title">Google AI Studio</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Développeurs</span>
+              <span class="meta-item">💻 Dev</span>
               <span class="meta-item">Navigateur Web</span>
             </div>
           </div>
@@ -481,7 +481,7 @@
             </div>
             <div class="tool-card-title">Gemini Code Assist</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Développeurs</span>
+              <span class="meta-item">💻 Dev</span>
               <span class="meta-item">Extension IDE</span>
             </div>
           </div>
@@ -490,7 +490,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-audience="dev explorateur" data-search="antigravity ide cli sdk agents autonomes studio">
+        <div class="tool-card" data-editor="Google" data-audience="dev" data-search="antigravity ide cli sdk agents autonomes studio">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -498,7 +498,7 @@
             </div>
             <div class="tool-card-title">Suite Google Antigravity</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Développeurs (Agents)</span>
+              <span class="meta-item">💻 Dev</span>
               <span class="meta-item">Desktop & CLI</span>
             </div>
           </div>
@@ -507,7 +507,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-audience="dev utilisateur" data-search="gemini enterprise agent platform vertex cloud grandes entreprises">
+        <div class="tool-card" data-editor="Google" data-audience="dev" data-search="gemini enterprise agent platform vertex cloud grandes entreprises">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -515,7 +515,7 @@
             </div>
             <div class="tool-card-title">Gemini Enterprise Agent Platform</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Grandes Entreprises & IT</span>
+              <span class="meta-item">💻 Dev</span>
               <span class="meta-item">Google Cloud</span>
             </div>
           </div>
@@ -524,7 +524,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-audience="explorateur utilisateur" data-search="project astra vision assistant mémoire temporelle smartphone">
+        <div class="tool-card" data-editor="Google" data-audience="explorateur" data-search="project astra vision assistant mémoire temporelle smartphone">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -532,7 +532,7 @@
             </div>
             <div class="tool-card-title">Project Astra</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Futur de la Vision</span>
+              <span class="meta-item">🚀 Explorateur</span>
               <span class="meta-item">Mobile / Lunettes</span>
             </div>
           </div>
@@ -542,7 +542,7 @@
         </div>
 
         <!-- ANTHROPIC -->
-        <div class="tool-card" data-editor="Anthropic" data-audience="utilisateur explorateur" data-search="claude.ai anthropic grand public rédaction raisonnement web app">
+        <div class="tool-card" data-editor="Anthropic" data-audience="grand-public" data-search="claude.ai anthropic grand public rédaction raisonnement web app">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -550,7 +550,7 @@
             </div>
             <div class="tool-card-title">Claude.ai</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Grand Public & Curieux</span>
+              <span class="meta-item">👤 Grand Public</span>
               <span class="meta-item">Web + Mobile</span>
             </div>
           </div>
@@ -559,7 +559,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Anthropic" data-audience="utilisateur" data-search="claude add-ons extensions connecteurs productivité pme">
+        <div class="tool-card" data-editor="Anthropic" data-audience="grand-public" data-search="claude add-ons extensions connecteurs productivité pme">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -567,7 +567,7 @@
             </div>
             <div class="tool-card-title">Claude Add-ons / Extensions</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Productivité & PME</span>
+              <span class="meta-item">👤 Grand Public</span>
               <span class="meta-item">Extensions Web</span>
             </div>
           </div>
@@ -576,7 +576,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Anthropic" data-audience="explorateur utilisateur" data-search="claude cowork desktop computer use agent écran clic entreprise">
+        <div class="tool-card" data-editor="Anthropic" data-audience="explorateur" data-search="claude cowork desktop computer use agent écran clic entreprise">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -584,7 +584,7 @@
             </div>
             <div class="tool-card-title">Claude Cowork (Computer Use)</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Entreprises & Processus</span>
+              <span class="meta-item">🚀 Explorateur</span>
               <span class="meta-item">Desktop / Agent</span>
             </div>
           </div>
@@ -593,7 +593,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Anthropic" data-audience="dev explorateur" data-search="anthropic console développeurs api prompts jetons web">
+        <div class="tool-card" data-editor="Anthropic" data-audience="dev" data-search="anthropic console développeurs api prompts jetons web">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -601,7 +601,7 @@
             </div>
             <div class="tool-card-title">Anthropic Console</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Développeurs</span>
+              <span class="meta-item">💻 Dev</span>
               <span class="meta-item">Navigateur Web</span>
             </div>
           </div>
@@ -618,7 +618,7 @@
             </div>
             <div class="tool-card-title">Claude Code (CLI)</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Développeurs (Autonomie)</span>
+              <span class="meta-item">💻 Dev</span>
               <span class="meta-item">Ligne de commande</span>
             </div>
           </div>
@@ -627,7 +627,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Anthropic" data-audience="dev utilisateur" data-search="anthropic api aws bedrock gcp cloud grandes entreprises">
+        <div class="tool-card" data-editor="Anthropic" data-audience="dev" data-search="anthropic api aws bedrock gcp cloud grandes entreprises">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -635,7 +635,7 @@
             </div>
             <div class="tool-card-title">Anthropic API (Bedrock / GCP)</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Grandes Entreprises & IT</span>
+              <span class="meta-item">💻 Dev</span>
               <span class="meta-item">Cloud API</span>
             </div>
           </div>
@@ -645,7 +645,7 @@
         </div>
 
         <!-- AUTRES -->
-        <div class="tool-card" data-editor="Autres" data-audience="utilisateur explorateur" data-search="chatgpt openai recherche rédaction analyse web mobile desktop">
+        <div class="tool-card" data-editor="Autres" data-audience="grand-public" data-search="chatgpt openai recherche rédaction analyse web mobile desktop">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -653,7 +653,7 @@
             </div>
             <div class="tool-card-title">ChatGPT / OpenAI</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Grand Public & Tech</span>
+              <span class="meta-item">👤 Grand Public</span>
               <span class="meta-item">Multi-plateforme</span>
             </div>
           </div>
@@ -662,7 +662,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Autres" data-audience="utilisateur explorateur" data-search="perplexity ai answers moteur recherche réponse direct sources web">
+        <div class="tool-card" data-editor="Autres" data-audience="grand-public" data-search="perplexity ai answers moteur recherche réponse direct sources web">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -670,7 +670,7 @@
             </div>
             <div class="tool-card-title">Perplexity AI / Answers</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Recherche & Veille</span>
+              <span class="meta-item">👤 Grand Public</span>
               <span class="meta-item">Web & Mobile</span>
             </div>
           </div>
@@ -679,7 +679,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Autres" data-audience="utilisateur explorateur" data-search="reddit answers moteur recherche avis utilisateurs synthèses">
+        <div class="tool-card" data-editor="Autres" data-audience="grand-public" data-search="reddit answers moteur recherche avis utilisateurs synthèses">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -687,7 +687,7 @@
             </div>
             <div class="tool-card-title">Reddit Answers</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Recherche & Synthèse</span>
+              <span class="meta-item">👤 Grand Public</span>
               <span class="meta-item">Web & Mobile</span>
             </div>
           </div>
@@ -696,7 +696,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Autres" data-audience="explorateur utilisateur" data-search="communautés reddit r/chatgpt r/localllama forum veille prompts open-source">
+        <div class="tool-card" data-editor="Autres" data-audience="explorateur" data-search="communautés reddit r/chatgpt r/localllama forum veille prompts open-source">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -704,7 +704,7 @@
             </div>
             <div class="tool-card-title">Communautés Reddit (r/ChatGPT, r/LocalLLaMA)</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Veille & Communauté</span>
+              <span class="meta-item">🚀 Explorateur</span>
               <span class="meta-item">Web & Mobile</span>
             </div>
           </div>
@@ -713,7 +713,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Autres" data-audience="utilisateur explorateur" data-search="midjourney flux.1 génération d'images artistiques photoréaliste">
+        <div class="tool-card" data-editor="Autres" data-audience="visuels" data-search="midjourney flux.1 génération d'images artistiques photoréaliste">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -721,7 +721,7 @@
             </div>
             <div class="tool-card-title">Midjourney / Flux.1</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Créatifs & Image</span>
+              <span class="meta-item">🎨 Visuels</span>
               <span class="meta-item">Web / Discord</span>
             </div>
           </div>
@@ -738,7 +738,7 @@
             </div>
             <div class="tool-card-title">Cursor IDE</div>
             <div class="tool-card-meta">
-              <span class="meta-item">Développeurs</span>
+              <span class="meta-item">💻 Dev</span>
               <span class="meta-item">Desktop</span>
             </div>
           </div>
@@ -799,7 +799,6 @@
         catView.classList.remove('active');
         quizView.classList.add('active');
         
-        // Mise à jour du bouton haut pour le retour vers le catalogue
         topBtn.innerHTML = '📋 ← Retour au Catalogue des Outils';
         topBtn.setAttribute('onclick', "switchView('catalogue')");
         subtitle.innerText = "Testez vos connaissances en associant chaque outil IA à sa fonctionnalité clé.";
@@ -811,14 +810,13 @@
         quizView.classList.remove('active');
         catView.classList.add('active');
 
-        // Mise à jour du bouton haut pour aller vers le jeu
         topBtn.innerHTML = '🎮 Tester ses connaissances (Jeu des usages) ↗';
         topBtn.setAttribute('onclick', "switchView('quiz')");
         subtitle.innerText = "Explorez et filtrez le catalogue des meilleurs outils IA du moment.";
       }
     }
 
-    // --- FILTRES DU CATALOGUE (SÉLECTION UNIQUE) ---
+    // --- FILTRES DU CATALOGUE (SÉLECTION ET TAG UNIQUE) ---
     let currentEditor = 'ALL';
     let currentAudience = 'ALL';
 
@@ -847,11 +845,11 @@
       cards.forEach(card => {
         const searchText = (card.dataset.search + ' ' + card.innerText).toLowerCase();
         const cardEditor = card.dataset.editor;
-        const cardAudiences = card.dataset.audience ? card.dataset.audience.split(' ') : [];
+        const cardAudience = card.dataset.audience;
 
         const matchesSearch = searchText.includes(input);
         const matchesEditor = (currentEditor === 'ALL') || (cardEditor === currentEditor);
-        const matchesAudience = (currentAudience === 'ALL') || cardAudiences.includes(currentAudience);
+        const matchesAudience = (currentAudience === 'ALL') || (cardAudience === currentAudience);
 
         if (matchesSearch && matchesEditor && matchesAudience) {
           card.style.display = 'flex';
