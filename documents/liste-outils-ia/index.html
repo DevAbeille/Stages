@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../main.css"> <!-- Ajustez le chemin vers votre main.css -->
+  <link rel="stylesheet" href="../../css/main.css">
 
   <style>
-    /* Surcharges spécifiques pour les fonctionnalités du Catalogue & Quiz */
+    /* Surcharges et harmonisation du style aux couleurs HOC (Noir / Anthracite / Orange) */
     
     .header-nav {
       display: flex;
@@ -27,30 +27,31 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: var(--primary);
+      color: var(--text-muted, #94a3b8);
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: 700;
       letter-spacing: 0.03em;
-      background-color: var(--card-bg);
-      padding: 0.5rem 1.25rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-color);
-      transition: var(--transition);
+      background-color: var(--card-bg, #161b22);
+      padding: 0.52rem 1.25rem;
+      border-radius: var(--radius-pill, 50px);
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+      transition: var(--transition, all 0.2s ease);
     }
 
     .back-link:hover, .source-link:hover {
-      background-color: var(--card-bg-hover);
-      border-color: var(--primary);
+      background-color: var(--card-bg-hover, #1f242d);
+      color: var(--text-primary, #ffffff);
+      border-color: rgba(255, 255, 255, 0.2);
       transform: translateY(-2px);
     }
 
     .source-link {
-      color: var(--badge-outils);
+      color: #38bdf8;
     }
 
     .source-link:hover {
-      border-color: var(--badge-outils);
+      border-color: #38bdf8;
     }
 
     /* Onglets de sous-navigation */
@@ -69,22 +70,22 @@
     }
 
     .tool-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
+      background: var(--card-bg, #161b22);
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+      border-radius: var(--radius-lg, 16px);
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: var(--transition);
-      box-shadow: var(--shadow-sm);
+      transition: var(--transition, all 0.2s ease);
+      box-shadow: var(--shadow-sm, 0 4px 6px -1px rgba(0, 0, 0, 0.3));
     }
 
     .tool-card:hover {
       transform: translateY(-4px);
-      background-color: var(--card-bg-hover);
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(255, 94, 58, 0.4);
+      background-color: var(--card-bg-hover, #1f242d);
+      box-shadow: var(--shadow-hover, 0 10px 15px -3px rgba(0, 0, 0, 0.4));
+      border-color: var(--primary, #FF5E3A);
     }
 
     .tool-card-header {
@@ -98,13 +99,13 @@
     .tool-card-title {
       font-size: 1.1rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--text-primary, #ffffff);
       margin-bottom: 0.25rem;
     }
 
     .tool-card-meta {
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: var(--text-muted, #94a3b8);
       margin-bottom: 1rem;
       display: flex;
       gap: 0.5rem;
@@ -115,12 +116,12 @@
       background: rgba(255, 255, 255, 0.04);
       padding: 0.15rem 0.5rem;
       border-radius: 4px;
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
     }
 
     .tool-card-body {
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      color: var(--text-secondary, #cbd5e1);
       line-height: 1.5;
       flex-grow: 1;
     }
@@ -129,11 +130,11 @@
     .quiz-container {
       max-width: 900px;
       margin: 0 auto;
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
+      background-color: var(--card-bg, #161b22);
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+      border-radius: var(--radius-lg, 16px);
       padding: 2.5rem 2rem;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-sm, 0 4px 6px -1px rgba(0, 0, 0, 0.3));
     }
 
     .quiz-header {
@@ -144,7 +145,7 @@
     .quiz-header h2 {
       font-size: 1.6rem;
       font-weight: 800;
-      color: var(--text-primary);
+      color: var(--text-primary, #ffffff);
       margin-bottom: 0.5rem;
     }
 
@@ -161,7 +162,7 @@
 
     .quiz-column h3 {
       font-size: 0.85rem;
-      color: var(--primary);
+      color: var(--primary, #FF5E3A);
       margin-bottom: 1rem;
       text-align: center;
       text-transform: uppercase;
@@ -170,32 +171,32 @@
     }
 
     .quiz-card {
-      background-color: var(--bg-color);
-      border: 1px solid var(--border-color);
+      background-color: var(--bg-color, #0d1117);
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
       padding: 1rem;
       border-radius: 10px;
       margin-bottom: 0.75rem;
       cursor: pointer;
-      transition: var(--transition);
+      transition: var(--transition, all 0.2s ease);
       user-select: none;
       font-size: 0.9rem;
-      color: var(--text-primary);
+      color: var(--text-primary, #ffffff);
     }
 
     .quiz-card:hover {
-      border-color: var(--primary-hover);
+      border-color: var(--primary, #FF5E3A);
       transform: translateX(2px);
     }
 
     .quiz-card.selected {
-      border-color: var(--primary);
-      background-color: var(--primary-light);
-      box-shadow: 0 0 10px rgba(255, 94, 58, 0.2);
+      border-color: var(--primary, #FF5E3A);
+      background-color: rgba(255, 94, 58, 0.15);
+      box-shadow: 0 0 12px rgba(255, 94, 58, 0.25);
     }
 
     .quiz-card.matched {
-      border-color: var(--badge-docs);
-      background-color: var(--badge-docs-bg);
+      border-color: #22c55e;
+      background-color: rgba(34, 197, 94, 0.1);
       cursor: default;
       opacity: 0.7;
       transform: none;
@@ -208,20 +209,20 @@
     }
 
     .btn-hoc {
-      background: var(--primary);
+      background: var(--primary, #FF5E3A);
       color: #ffffff;
       border: none;
       padding: 0.75rem 1.75rem;
       font-size: 0.9rem;
       font-weight: 700;
-      border-radius: var(--radius-pill);
+      border-radius: var(--radius-pill, 50px);
       cursor: pointer;
-      transition: var(--transition);
-      box-shadow: 0 2px 10px rgba(255, 94, 58, 0.3);
+      transition: var(--transition, all 0.2s ease);
+      box-shadow: 0 4px 15px rgba(255, 94, 58, 0.3);
     }
 
     .btn-hoc:hover {
-      background: var(--primary-hover);
+      background: #e04e2b;
       transform: translateY(-2px);
     }
 
@@ -230,7 +231,7 @@
       font-size: 1.1rem;
       font-weight: 700;
       margin-top: 1.5rem;
-      color: var(--badge-docs);
+      color: #22c55e;
     }
 
     /* Masquage des sections onglets */
@@ -857,8 +858,8 @@
           matchesCount++;
           updateScore();
         } else {
-          selectedTool.style.borderColor = '#f87171';
-          selectedUsage.style.borderColor = '#f87171';
+          selectedTool.style.borderColor = '#ef4444';
+          selectedUsage.style.borderColor = '#ef4444';
           setTimeout(() => {
             if (selectedTool) selectedTool.style.borderColor = '';
             if (selectedUsage) selectedUsage.style.borderColor = '';
