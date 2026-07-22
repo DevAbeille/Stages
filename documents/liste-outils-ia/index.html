@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalogue & Quiz Outils IA 2026 — HOC</title>
+  <title>Répertoire & Quiz des Outils IA — HOC</title>
   
   <!-- Typographie & CSS Central HOC -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,6 +36,7 @@
       border-radius: var(--radius-pill, 50px);
       border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
       transition: var(--transition, all 0.2s ease);
+      cursor: pointer;
     }
 
     .back-link:hover, .source-link:hover {
@@ -53,11 +54,38 @@
       border-color: #38bdf8;
     }
 
-    /* Section des filtres propre et alignée */
+    /* Badge intégrant le lien du jeu */
+    .header-badge-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 94, 58, 0.1);
+      border: 1px solid rgba(255, 94, 58, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-pill, 50px);
+      color: var(--primary, #FF5E3A);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition, all 0.2s ease);
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+
+    .header-badge-link:hover {
+      background: rgba(255, 94, 58, 0.2);
+      border-color: var(--primary, #FF5E3A);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    /* Section des filtres épurée */
     .filters-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.8rem;
       margin-bottom: 2rem;
       align-items: center;
     }
@@ -276,24 +304,19 @@
 
     <!-- Header Principal -->
     <header>
-      <span class="logo-badge">Ressources & Interactivité</span>
+      <!-- Le bouton/badge interactif bascule vers le jeu -->
+      <a href="javascript:void(0)" class="header-badge-link" onclick="switchView('quiz')" id="topGameLink">
+        🎮 Tester ses connaissances (Jeu des usages) ↗
+      </a>
       <h1>Répertoire & Quiz des Outils IA</h1>
-      <p>Explorez le catalogue des outils ou testez vos connaissances avec le jeu d'association.</p>
+      <p id="headerSubtitle">Explorez et filtrez le catalogue des meilleurs outils IA du moment.</p>
     </header>
 
-    <!-- Navigation Onglets -->
-    <div class="controls-bar">
-      <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('tab-table')">📋 Catalogue Outils</button>
-        <button class="tab-btn" onclick="switchTab('tab-quiz')">🎮 Jeu des Usages (5 tirés)</button>
-      </div>
-    </div>
-
-    <!-- ================= ONGLET 1 : CATALOGUE ================= -->
-    <div id="tab-table" class="tab-content active">
+    <!-- ================= VUE 1 : CATALOGUE ================= -->
+    <div id="view-catalogue" class="tab-content active">
       
       <!-- Barre de recherche -->
-      <div class="controls-bar" style="margin-bottom: 1.5rem;">
+      <div class="controls-bar" style="margin-bottom: 1.2rem;">
         <div class="search-box">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -302,7 +325,7 @@
         </div>
       </div>
 
-      <!-- Bloc Filtres Harmonisés -->
+      <!-- Bloc Filtres Harmonisés (Sélection unique) -->
       <div class="filters-wrapper">
         <!-- Ligne Éditeur -->
         <div class="filter-row">
@@ -315,7 +338,7 @@
           </div>
         </div>
 
-        <!-- Ligne Audience (Choix unique harmonisé) -->
+        <!-- Ligne Audience -->
         <div class="filter-row">
           <span class="filter-label">Audience</span>
           <div class="view-switcher" id="audienceFilters">
@@ -733,8 +756,8 @@
 
     </div>
 
-    <!-- ================= ONGLET 2 : QUIZ ================= -->
-    <div id="tab-quiz" class="tab-content">
+    <!-- ================= VUE 2 : QUIZ ================= -->
+    <div id="view-quiz" class="tab-content">
       <div class="quiz-container">
         <div class="quiz-header">
           <h2>🎯 Associez l'Outil à son Usage principal</h2>
@@ -765,20 +788,37 @@
   </div>
 
   <script>
-    // --- GESTION DES ONGLETS ---
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tabs .tab-btn').forEach(el => el.classList.remove('active'));
+    // --- BASCULEMENT DE VUE (BIDIRECTIONNEL) ---
+    function switchView(viewName) {
+      const catView = document.getElementById('view-catalogue');
+      const quizView = document.getElementById('view-quiz');
+      const topBtn = document.getElementById('topGameLink');
+      const subtitle = document.getElementById('headerSubtitle');
 
-      document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
+      if (viewName === 'quiz') {
+        catView.classList.remove('active');
+        quizView.classList.add('active');
+        
+        // Mise à jour du bouton haut pour le retour vers le catalogue
+        topBtn.innerHTML = '📋 ← Retour au Catalogue des Outils';
+        topBtn.setAttribute('onclick', "switchView('catalogue')");
+        subtitle.innerText = "Testez vos connaissances en associant chaque outil IA à sa fonctionnalité clé.";
+        
+        if (quizData.length === 0) {
+          generateNewQuiz();
+        }
+      } else {
+        quizView.classList.remove('active');
+        catView.classList.add('active');
 
-      if (tabId === 'tab-quiz' && quizData.length === 0) {
-        generateNewQuiz();
+        // Mise à jour du bouton haut pour aller vers le jeu
+        topBtn.innerHTML = '🎮 Tester ses connaissances (Jeu des usages) ↗';
+        topBtn.setAttribute('onclick', "switchView('quiz')");
+        subtitle.innerText = "Explorez et filtrez le catalogue des meilleurs outils IA du moment.";
       }
     }
 
-    // --- FILTRES DU CATALOGUE (SÉLECTION UNIQUE HARMONISÉE) ---
+    // --- FILTRES DU CATALOGUE (SÉLECTION UNIQUE) ---
     let currentEditor = 'ALL';
     let currentAudience = 'ALL';
 
