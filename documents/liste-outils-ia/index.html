@@ -54,12 +54,29 @@
       border-color: #38bdf8;
     }
 
-    /* Onglets de sous-navigation */
-    .tabs-navigation {
+    /* Conteneur des filtres avancés */
+    .filters-stack {
       display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted, #94a3b8);
+      min-width: 90px;
     }
 
     /* Ajustements pour la grille de cartes d'outils */
@@ -274,20 +291,38 @@
     <!-- ================= ONGLET 1 : CATALOGUE ================= -->
     <div id="tab-table" class="tab-content active">
       
-      <!-- Barre de recherche et filtres d'éditeurs -->
-      <div class="controls-bar">
+      <!-- Barre de recherche -->
+      <div class="controls-bar" style="margin-bottom: 1rem;">
         <div class="search-box">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
           <input type="text" id="searchInput" onkeyup="filterData()" placeholder="Rechercher un outil, un usage, un éditeur...">
         </div>
-        
-        <div class="view-switcher" id="editorFilters">
-          <button class="switch-btn active" onclick="filterEditor('ALL')">Tous</button>
-          <button class="switch-btn" onclick="filterEditor('Google')">Google</button>
-          <button class="switch-btn" onclick="filterEditor('Anthropic')">Anthropic</button>
-          <button class="switch-btn" onclick="filterEditor('Autres')">Autres</button>
+      </div>
+
+      <!-- Filtres Multi-sélection : Éditeurs + Audiences -->
+      <div class="filters-stack">
+        <!-- Ligne 1: Éditeurs -->
+        <div class="filter-group">
+          <span class="filter-label">Éditeur :</span>
+          <div class="view-switcher" id="editorFilters">
+            <button class="switch-btn active" onclick="filterEditor('ALL')">Tous</button>
+            <button class="switch-btn" onclick="filterEditor('Google')">Google</button>
+            <button class="switch-btn" onclick="filterEditor('Anthropic')">Anthropic</button>
+            <button class="switch-btn" onclick="filterEditor('Autres')">Autres</button>
+          </div>
+        </div>
+
+        <!-- Ligne 2: Audience (Multi-Sélection) -->
+        <div class="filter-group">
+          <span class="filter-label">Audience :</span>
+          <div class="view-switcher" id="audienceFilters">
+            <button class="switch-btn active" data-audience="ALL" onclick="toggleAudience('ALL')">Tous</button>
+            <button class="switch-btn" data-audience="utilisateur" onclick="toggleAudience('utilisateur')">👤 Utilisateur / Grand Public</button>
+            <button class="switch-btn" data-audience="dev" onclick="toggleAudience('dev')">💻 Dev / Tech</button>
+            <button class="switch-btn" data-audience="explorateur" onclick="toggleAudience('explorateur')">🚀 Explorateur / Prototypage</button>
+          </div>
         </div>
       </div>
 
@@ -295,7 +330,7 @@
       <div class="tools-grid" id="toolsGrid">
 
         <!-- GOOGLE -->
-        <div class="tool-card" data-editor="Google" data-search="gemini app google grand public web app mobile">
+        <div class="tool-card" data-editor="Google" data-audience="utilisateur explorateur" data-search="gemini app google grand public web app mobile">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -312,7 +347,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="google search labs live in search recherche web mobile">
+        <div class="tool-card" data-editor="Google" data-audience="utilisateur explorateur" data-search="google search labs live in search recherche web mobile">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -329,7 +364,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="gemini workspace docs gmail sheets productivité pme">
+        <div class="tool-card" data-editor="Google" data-audience="utilisateur" data-search="gemini workspace docs gmail sheets productivité pme">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -346,7 +381,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="notebooklm recherche synthèse audio overviews podcasts web">
+        <div class="tool-card" data-editor="Google" data-audience="utilisateur explorateur" data-search="notebooklm recherche synthèse audio overviews podcasts web">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -363,7 +398,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="gemini spark project mariner cloud agent processus entreprise">
+        <div class="tool-card" data-editor="Google" data-audience="utilisateur explorateur" data-search="gemini spark project mariner cloud agent processus entreprise">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -380,7 +415,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="flow creation labs veo imagen lyria vidéo hd design audio">
+        <div class="tool-card" data-editor="Google" data-audience="explorateur utilisateur" data-search="flow creation labs veo imagen lyria vidéo hd design audio">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -397,7 +432,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="google ai studio développeurs prototypage api invites web">
+        <div class="tool-card" data-editor="Google" data-audience="dev explorateur" data-search="google ai studio développeurs prototypage api invites web">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -414,7 +449,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="gemini code assist ide vs code jetbrains autocomplétion code">
+        <div class="tool-card" data-editor="Google" data-audience="dev" data-search="gemini code assist ide vs code jetbrains autocomplétion code">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -431,7 +466,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="antigravity ide cli sdk agents autonomes studio">
+        <div class="tool-card" data-editor="Google" data-audience="dev explorateur" data-search="antigravity ide cli sdk agents autonomes studio">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -448,7 +483,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="gemini enterprise agent platform vertex cloud grandes entreprises">
+        <div class="tool-card" data-editor="Google" data-audience="dev utilisateur" data-search="gemini enterprise agent platform vertex cloud grandes entreprises">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -465,7 +500,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Google" data-search="project astra vision assistant mémoire temporelle smartphone">
+        <div class="tool-card" data-editor="Google" data-audience="explorateur utilisateur" data-search="project astra vision assistant mémoire temporelle smartphone">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-outils">Google</span>
@@ -483,7 +518,7 @@
         </div>
 
         <!-- ANTHROPIC -->
-        <div class="tool-card" data-editor="Anthropic" data-search="claude.ai anthropic grand public rédaction raisonnement web app">
+        <div class="tool-card" data-editor="Anthropic" data-audience="utilisateur explorateur" data-search="claude.ai anthropic grand public rédaction raisonnement web app">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -500,7 +535,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Anthropic" data-search="claude add-ons extensions connecteurs productivité pme">
+        <div class="tool-card" data-editor="Anthropic" data-audience="utilisateur" data-search="claude add-ons extensions connecteurs productivité pme">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -517,7 +552,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Anthropic" data-search="claude cowork desktop computer use agent écran clic entreprise">
+        <div class="tool-card" data-editor="Anthropic" data-audience="explorateur utilisateur" data-search="claude cowork desktop computer use agent écran clic entreprise">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -534,7 +569,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Anthropic" data-search="anthropic console développeurs api prompts jetons web">
+        <div class="tool-card" data-editor="Anthropic" data-audience="dev explorateur" data-search="anthropic console développeurs api prompts jetons web">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -551,7 +586,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Anthropic" data-search="claude code cli développeurs ligne de commande terminal agent">
+        <div class="tool-card" data-editor="Anthropic" data-audience="dev" data-search="claude code cli développeurs ligne de commande terminal agent">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -568,7 +603,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Anthropic" data-search="anthropic api aws bedrock gcp cloud grandes entreprises">
+        <div class="tool-card" data-editor="Anthropic" data-audience="dev utilisateur" data-search="anthropic api aws bedrock gcp cloud grandes entreprises">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-presentations">Anthropic</span>
@@ -586,7 +621,7 @@
         </div>
 
         <!-- AUTRES -->
-        <div class="tool-card" data-editor="Autres" data-search="chatgpt openai recherche rédaction analyse web mobile desktop">
+        <div class="tool-card" data-editor="Autres" data-audience="utilisateur explorateur" data-search="chatgpt openai recherche rédaction analyse web mobile desktop">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -603,7 +638,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Autres" data-search="perplexity ai answers moteur recherche réponse direct sources web">
+        <div class="tool-card" data-editor="Autres" data-audience="utilisateur explorateur" data-search="perplexity ai answers moteur recherche réponse direct sources web">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -620,7 +655,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Autres" data-search="reddit answers moteur recherche avis utilisateurs synthèses">
+        <div class="tool-card" data-editor="Autres" data-audience="utilisateur explorateur" data-search="reddit answers moteur recherche avis utilisateurs synthèses">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -637,7 +672,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Autres" data-search="communautés reddit r/chatgpt r/localllama forum veille prompts open-source">
+        <div class="tool-card" data-editor="Autres" data-audience="explorateur utilisateur" data-search="communautés reddit r/chatgpt r/localllama forum veille prompts open-source">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -654,7 +689,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Autres" data-search="midjourney flux.1 génération d'images artistiques photoréaliste">
+        <div class="tool-card" data-editor="Autres" data-audience="utilisateur explorateur" data-search="midjourney flux.1 génération d'images artistiques photoréaliste">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -671,7 +706,7 @@
           </div>
         </div>
 
-        <div class="tool-card" data-editor="Autres" data-search="cursor ide éditeur code assistance génération ia vs code">
+        <div class="tool-card" data-editor="Autres" data-audience="dev" data-search="cursor ide éditeur code assistance génération ia vs code">
           <div>
             <div class="tool-card-header">
               <span class="badge badge-documents">Autres</span>
@@ -742,8 +777,48 @@
       }
     }
 
-    // --- FILTRES DU CATALOGUE ---
+    // --- FILTRES DU CATALOGUE (MULTIPLE AUDIENCE + ÉDITEUR) ---
     let currentEditor = 'ALL';
+    let selectedAudiences = new Set(['ALL']);
+
+    function toggleAudience(audience) {
+      const allBtn = document.querySelector('#audienceFilters [data-audience="ALL"]');
+      const targetBtn = document.querySelector(`#audienceFilters [data-audience="${audience}"]`);
+
+      if (audience === 'ALL') {
+        selectedAudiences.clear();
+        selectedAudiences.add('ALL');
+        document.querySelectorAll('#audienceFilters .switch-btn').forEach(btn => btn.classList.remove('active'));
+        allBtn.classList.add('active');
+      } else {
+        selectedAudiences.delete('ALL');
+        allBtn.classList.remove('active');
+
+        if (selectedAudiences.has(audience)) {
+          selectedAudiences.delete(audience);
+          targetBtn.classList.remove('active');
+        } else {
+          selectedAudiences.add(audience);
+          targetBtn.classList.add('active');
+        }
+
+        // Si plus aucune catégorie sélectionnée, on remet "Tous"
+        if (selectedAudiences.size === 0) {
+          selectedAudiences.add('ALL');
+          allBtn.classList.add('active');
+        }
+      }
+
+      filterData();
+    }
+
+    function filterEditor(editor) {
+      currentEditor = editor;
+      document.querySelectorAll('#editorFilters .switch-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.innerText.includes(editor) || (editor === 'ALL' && btn.innerText === 'Tous'));
+      });
+      filterData();
+    }
 
     function filterData() {
       const input = document.getElementById('searchInput').value.toLowerCase();
@@ -753,11 +828,18 @@
       cards.forEach(card => {
         const searchText = (card.dataset.search + ' ' + card.innerText).toLowerCase();
         const cardEditor = card.dataset.editor;
+        const cardAudiences = card.dataset.audience ? card.dataset.audience.split(' ') : [];
 
         const matchesSearch = searchText.includes(input);
         const matchesEditor = (currentEditor === 'ALL') || (cardEditor === currentEditor);
+        
+        // Match multi-audience (si au moins une sélectionnée correspond, ou si ALL)
+        let matchesAudience = selectedAudiences.has('ALL');
+        if (!matchesAudience) {
+          matchesAudience = cardAudiences.some(aud => selectedAudiences.has(aud));
+        }
 
-        if (matchesSearch && matchesEditor) {
+        if (matchesSearch && matchesEditor && matchesAudience) {
           card.style.display = 'flex';
           visibleCount++;
         } else {
@@ -766,14 +848,6 @@
       });
 
       document.getElementById('emptyState').style.display = (visibleCount === 0) ? 'block' : 'none';
-    }
-
-    function filterEditor(editor) {
-      currentEditor = editor;
-      document.querySelectorAll('#editorFilters .switch-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.innerText.includes(editor) || (editor === 'ALL' && btn.innerText === 'Tous'));
-      });
-      filterData();
     }
 
     // --- LOGIQUE DU JEU / QUIZ (5 Outils tirés au sort) ---
