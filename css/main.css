@@ -22,31 +22,31 @@
   --text-secondary: #8b949e;  /* Textes explicatifs */
   --text-muted: #6e7681;      /* Textes secondaires */
 
-  /* --- BADGES (SOMBRER) --- */
+  /* --- BADGES (THÈME SOMBRE) --- */
   /* Cyan / Outils */
-  --badge-outils: #38bdf8;
+  --badge-outils-color: #38bdf8;
   --badge-outils-bg: rgba(56, 189, 248, 0.12);
-  --badge-outils-border: rgba(56, 189, 248, 0.2);
+  --badge-outils-border: rgba(56, 189, 248, 0.25);
   
   /* Violet / Présentations */
-  --badge-pres: #c084fc;
+  --badge-pres-color: #c084fc;
   --badge-pres-bg: rgba(192, 132, 252, 0.12);
-  --badge-pres-border: rgba(192, 132, 252, 0.2);
+  --badge-pres-border: rgba(192, 132, 252, 0.25);
   
   /* Vert / Documents */
-  --badge-docs: #4ade80;
+  --badge-docs-color: #4ade80;
   --badge-docs-bg: rgba(74, 222, 128, 0.12);
-  --badge-docs-border: rgba(74, 222, 128, 0.2);
+  --badge-docs-border: rgba(74, 222, 128, 0.25);
 
   /* Jaune / Pause */
   --badge-pause-color: #fde047;
   --badge-pause-bg: rgba(253, 224, 71, 0.12);
-  --badge-pause-border: rgba(253, 224, 71, 0.2);
+  --badge-pause-border: rgba(253, 224, 71, 0.25);
 
-  /* Orange / Atelier & Ex */
+  /* Orange / Atelier & Exercices */
   --badge-atelier-color: #ff5e3a;
   --badge-atelier-bg: rgba(255, 94, 58, 0.12);
-  --badge-atelier-border: rgba(255, 94, 58, 0.2);
+  --badge-atelier-border: rgba(255, 94, 58, 0.25);
 
   /* Puces Équipements : Fond NOIR sur carte sombre */
   --circle-bg: #0d1117;
@@ -63,7 +63,7 @@
 }
 
 /* ==========================================================================
-   THÈME CLAIR (S'active avec la classe .light-theme)
+   THÈME CLAIR (S'active avec la classe .light-theme sur html ou body)
    ========================================================================== */
 .light-theme, :root.light-theme {
   --bg-color: #f8fafc;        /* Fond de page blanc/gris très doux */
@@ -80,31 +80,31 @@
   --circle-border: #cbd5e1;
   --circle-text: #0f172a;
 
-  /* --- BADGES ADAPTÉS (CLAIR — Teintes renforcées pour un super contraste) --- */
+  /* --- BADGES (THÈME CLAIR — Teintes renforcées pour un super contraste) --- */
   /* Cyan / Outils */
-  --badge-outils: #0284c7;
-  --badge-outils-bg: rgba(56, 189, 248, 0.15);
-  --badge-outils-border: rgba(56, 189, 248, 0.3);
+  --badge-outils-color: #0284c7;
+  --badge-outils-bg: rgba(56, 189, 248, 0.18);
+  --badge-outils-border: rgba(56, 189, 248, 0.35);
 
   /* Violet / Présentations */
-  --badge-pres: #7e22ce;
-  --badge-pres-bg: rgba(192, 132, 252, 0.15);
-  --badge-pres-border: rgba(192, 132, 252, 0.3);
+  --badge-pres-color: #7e22ce;
+  --badge-pres-bg: rgba(192, 132, 252, 0.18);
+  --badge-pres-border: rgba(192, 132, 252, 0.35);
 
   /* Vert / Documents */
-  --badge-docs: #15803d;
+  --badge-docs-color: #15803d;
   --badge-docs-bg: rgba(74, 222, 128, 0.18);
-  --badge-docs-border: rgba(74, 222, 128, 0.3);
+  --badge-docs-border: rgba(74, 222, 128, 0.35);
 
   /* Jaune / Pause (Ambré) */
   --badge-pause-color: #a16207;
   --badge-pause-bg: rgba(234, 179, 8, 0.18);
-  --badge-pause-border: rgba(234, 179, 8, 0.3);
+  --badge-pause-border: rgba(234, 179, 8, 0.35);
 
-  /* Orange / Atelier (Corail Sombre) */
+  /* Orange / Atelier & Exercices (Corail foncé) */
   --badge-atelier-color: #c2410c;
-  --badge-atelier-bg: rgba(255, 94, 58, 0.15);
-  --badge-atelier-border: rgba(255, 94, 58, 0.3);
+  --badge-atelier-bg: rgba(255, 94, 58, 0.18);
+  --badge-atelier-border: rgba(255, 94, 58, 0.35);
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
   --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
@@ -233,11 +233,11 @@ header p, .header p {
 }
 
 /* ==========================================================================
-   CLASSES BADGES DYNAMIQUES HOC
+   BADGES & STYLES DASHBOARD HARMONISÉS
    ========================================================================== */
-.badge {
+.badge, .badge-dash {
   font-size: 0.725rem;
-  font-weight: 700;
+  font-weight: 800;
   padding: 0.3rem 0.75rem;
   border-radius: var(--radius-pill);
   text-transform: uppercase;
@@ -246,34 +246,68 @@ header p, .header p {
   transition: var(--transition);
 }
 
+/* Outils (Cyan) */
 .badge-outils {
-  color: var(--badge-outils);
+  color: var(--badge-outils-color);
   background: var(--badge-outils-bg);
   border: 1px solid var(--badge-outils-border);
 }
 
-.badge-presentations {
-  color: var(--badge-pres);
-  background: var(--badge-pres-bg);
-  border: 1px solid var(--badge-pres-border);
-}
-
+/* Documents (Vert) */
 .badge-documents {
-  color: var(--badge-docs);
+  color: var(--badge-docs-color);
   background: var(--badge-docs-bg);
   border: 1px solid var(--badge-docs-border);
 }
 
-.badge-pause, .badge-yellow {
+/* Présentations (Violet) */
+.presentation {
+  border-left: 3px solid var(--badge-pres-color);
+}
+.badge-presentations,
+.presentation .badge-dash,
+.presentation .btn-dash {
+  color: var(--badge-pres-color);
+  background: var(--badge-pres-bg);
+  border: 1px solid var(--badge-pres-border);
+}
+.presentation .btn-dash:hover {
+  background: var(--badge-pres-color);
+  color: #ffffff;
+}
+
+/* Pause (Jaune) */
+.pause {
+  border-left: 3px solid var(--badge-pause-color);
+}
+.badge-pause,
+.badge-yellow,
+.pause .badge-dash,
+.pause .btn-dash {
   color: var(--badge-pause-color);
   background: var(--badge-pause-bg);
   border: 1px solid var(--badge-pause-border);
 }
+.pause .btn-dash:hover {
+  background: var(--badge-pause-color);
+  color: #ffffff;
+}
 
-.badge-atelier, .badge-orange {
+/* Atelier / Exercice (Orange) */
+.atelier {
+  border-left: 3px solid var(--badge-atelier-color);
+}
+.badge-atelier,
+.badge-orange,
+.atelier .badge-dash,
+.atelier .btn-dash {
   color: var(--badge-atelier-color);
   background: var(--badge-atelier-bg);
   border: 1px solid var(--badge-atelier-border);
+}
+.atelier .btn-dash:hover {
+  background: var(--badge-atelier-color);
+  color: #ffffff;
 }
 
 /* Contenu Carte */
@@ -342,7 +376,7 @@ header p, .header p {
   line-height: 1;
   flex-shrink: 0;
 
-  /* Fond et bordure adaptatifs au thème actif (Noir en sombre, Blanc en clair) */
+  /* Fond et bordure adaptatifs au thème actif */
   background-color: var(--circle-bg);
   border: 1px solid var(--circle-border);
   color: var(--circle-text);
