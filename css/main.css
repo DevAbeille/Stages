@@ -310,6 +310,7 @@ header p {
 /* ==========================================================================
    Badges de disponibilité discrets (Dispo / Dispo sur tél)
    ========================================================================== */
+/* Badges de disponibilité discrets */
 .availability-badge {
   display: inline-flex;
   align-items: center;
@@ -323,12 +324,35 @@ header p {
   border-radius: var(--radius-pill);
 }
 
-.availability-badge::before {
+/* 1. Mobile (Puce verte) */
+.availability-badge.mobile::before {
   content: '';
   display: inline-block;
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: #22c55e; /* Puce verte */
+  background-color: #22c55e;
   box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+}
+
+/* 2. Ordi recommandé (Puce orange/jaune) */
+.availability-badge.desktop-rec::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+}
+
+/* 3. Ordi only (Puce rouge/corail) */
+.availability-badge.desktop-only::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
 }
