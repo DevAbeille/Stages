@@ -22,7 +22,7 @@
             color: var(--white); 
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Désactivé en JS sur desktop, basculé en auto sur mobile */
+            overflow: hidden; 
             touch-action: manipulation;
         }
 
@@ -43,7 +43,7 @@
         }
         .progress-bar.active { background: var(--primary); width: 55px; }
 
-        /* SYSTÈME DE POP-UP / ACCROCHE (HOOK OVERLAYS) */
+        /* OVERLAY / HOOK POPUP */
         #hook-overlay {
             position: fixed; inset: 0; background: var(--dark); z-index: 2000;
             display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -60,7 +60,7 @@
         /* SCROLL HORIZONTAL DESKTOP */
         .master-wrapper { 
             display: flex; 
-            width: 700vw; /* 7 pans d'histoire */
+            width: 700vw; 
             height: 100vh; 
             transition: var(--transition); 
             will-change: transform;
@@ -75,12 +75,12 @@
 
         .panel-container { position: relative; z-index: 2; width: 100%; max-width: 1200px; }
 
-        /* TYPOGRAPHIE MASSIF */
+        /* TYPOGRAPHIE */
         .giant-title { font-size: clamp(2.5rem, 5vw, 5rem); text-transform: uppercase; line-height: 0.95; margin-bottom: 25px; letter-spacing: -2px; }
         .giant-title span { color: var(--primary); }
         .desc-text { font-size: clamp(1rem, 1.5vw, 1.3rem); font-family: 'Arial', sans-serif; color: var(--text-muted); max-width: 750px; line-height: 1.5; }
 
-        /* COMPOSANTS ET GRILLES */
+        /* COMPOSANTS DE GRILLE */
         .visual-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
         .grid-card { background: var(--grey); border-radius: 12px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); text-align: left; text-decoration: none; color: inherit; transition: var(--transition); }
         .grid-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
@@ -117,15 +117,101 @@
         .video-card p { font-size: 0.85rem; font-family: 'Arial', sans-serif; color: var(--text-muted); line-height: 1.4; margin-bottom: 15px; }
         .video-tag { font-size: 0.65rem; font-weight: bold; text-transform: uppercase; color: var(--primary); border: 1px solid var(--primary); padding: 4px 10px; border-radius: 20px; display: inline-block; }
 
-        /* CHRONOLOGIE EMBELLIE */
-        .timeline-container { background: var(--grey); border-radius: 12px; padding: 30px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
-        .tm-axis { position: relative; height: 4px; background: rgba(255,255,255,0.1); margin: 50px 0 30px 0; display: flex; justify-content: space-between; }
-        .tm-node { width: 34px; height: 34px; background: #222; border: 3px solid rgba(255,255,255,0.2); border-radius: 50%; cursor: pointer; top: -15px; position: relative; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.3s; z-index: 10; }
-        .tm-node.active { border-color: var(--primary); background: var(--primary); box-shadow: 0 0 20px var(--primary); color: white; }
-        .tm-node-year { position: absolute; top: -30px; font-size: 0.85rem; font-weight: bold; white-space: nowrap; }
+        /* --- FRESQUE / CHRONOLOGIE OPTIMISÉE --- */
+        .timeline-container { 
+            background: var(--grey); 
+            border-radius: 12px; 
+            padding: 40px 30px 30px 30px; 
+            margin-top: 20px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            width: 100%;
+        }
+
+        .tm-scroll-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            padding: 20px 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+        }
+
+        .tm-axis { 
+            position: relative; 
+            height: 4px; 
+            background: rgba(255,255,255,0.15); 
+            margin: 40px 0 30px 0; 
+            display: flex; 
+            justify-content: space-between; 
+            min-width: 650px; /* Garantit un espace suffisant entre les jalons */
+        }
+
+        .tm-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .tm-node { 
+            width: 36px; 
+            height: 36px; 
+            background: #222; 
+            border: 3px solid rgba(255,255,255,0.3); 
+            border-radius: 50%; 
+            cursor: pointer; 
+            top: -16px; 
+            position: absolute; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 0.95rem; 
+            transition: all 0.3s ease; 
+            z-index: 10; 
+        }
+
+        .tm-node.active { 
+            border-color: var(--primary); 
+            background: var(--primary); 
+            box-shadow: 0 0 18px var(--primary); 
+            color: white; 
+            transform: scale(1.15);
+        }
+
+        .tm-node-year { 
+            position: absolute; 
+            top: -32px; 
+            font-size: 0.85rem; 
+            font-weight: bold; 
+            white-space: nowrap; 
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
         
-        .tm-live-card { display: flex; gap: 20px; align-items: center; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; min-height: 100px; margin-top: 10px; }
-        .tm-live-icon { font-size: 2.5rem; background: rgba(241, 90, 36, 0.1); width: 70px; height: 70px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: var(--primary); }
+        .tm-live-card { 
+            display: flex; 
+            gap: 20px; 
+            align-items: center; 
+            background: rgba(0,0,0,0.4); 
+            padding: 25px; 
+            border-radius: 10px; 
+            min-height: 110px; 
+            margin-top: 15px; 
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .tm-live-icon { 
+            font-size: 2.2rem; 
+            background: rgba(241, 90, 36, 0.12); 
+            width: 65px; 
+            height: 65px; 
+            flex-shrink: 0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 12px; 
+            color: var(--primary); 
+        }
 
         /* POUPÉES RUSSES INTERACTIVES */
         .doll-arena { display: flex; align-items: center; justify-content: center; height: 320px; position: relative; margin-top: 20px; }
@@ -137,13 +223,12 @@
         #doll4 { width: 70px; height: 70px; z-index: 1; background: var(--primary); border: none; }
         .layer-doll.extracted { opacity: 0; transform: scale(1.4) rotate(15deg); pointer-events: none; }
 
-        /* INDICATION BAS DE PAGE */
         .scroll-tip { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 5; font-size: 0.75rem; color: rgba(255,255,255,0.3); letter-spacing: 3px; text-transform: uppercase; font-family: 'Arial', sans-serif; animation: pulse 2s infinite; }
 
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
         @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* ADAPTATION MOBILE ET TABLETTE (DÉSACTIVATION POP-UP ET PASSAGE VERTICAL) */
+        /* ADAPTATION MOBILE ET TABLETTE */
         @media (max-width: 900px) {
             body { overflow-y: auto; }
             header { padding: 15px 20px; }
@@ -168,7 +253,6 @@
                 gap: 20px; 
             }
 
-            .tm-axis { overflow-x: auto; padding-bottom: 20px; }
             .doll-arena { transform: scale(0.85); }
         }
     </style>
@@ -234,11 +318,14 @@
         </div>
     </section>
 
+    <!-- FRESQUE / SLIDE CHRONOLOGIE REVISITÉE -->
     <section class="panel-section" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop');">
         <div class="panel-container">
             <h1 class="giant-title">DEPUIS <span>QUAND ?</span></h1>
             <div class="timeline-container">
-                <div class="tm-axis" id="tmAxis"></div>
+                <div class="tm-scroll-wrapper">
+                    <div class="tm-axis" id="tmAxis"></div>
+                </div>
                 <div class="tm-live-card">
                     <div class="tm-live-icon" id="liveIcon">📜</div>
                     <div>
@@ -422,7 +509,7 @@
         bars.forEach((b, i) => b.classList.toggle('active', i === idx));
     }
 
-    /* CHRONOLOGIE HISTORIQUE */
+    /* CHRONOLOGIE HISTORIQUE RÉAJUSTÉE */
     const historyDataset = [
         { y: "Antiquité", i: "📜", t: "Mythes fondateurs", b: "Du colosse de bronze Talos au Frankenstein de 1818, l'obsession de la création artificielle est ancrée dans la conscience humaine." },
         { y: "1943", i: "🧠", t: "Le neurone logique", b: "McCulloch et Pitts conçoivent l'équation initiale du traitement logique. L'IA se matérialise scientifiquement." },
@@ -434,9 +521,13 @@
 
     const tmAxis = document.getElementById('tmAxis');
     historyDataset.forEach((data, i) => {
+        const itemContainer = document.createElement('div');
+        itemContainer.className = 'tm-item';
+
         const node = document.createElement('div');
         node.className = 'tm-node';
         node.innerHTML = `${data.i}<span class="tm-node-year">${data.y}</span>`;
+        
         node.onclick = () => {
             document.querySelectorAll('.tm-node').forEach(n => n.classList.remove('active'));
             node.classList.add('active');
@@ -444,7 +535,10 @@
             document.getElementById('liveTitle').innerText = `${data.y} — ${data.t}`;
             document.getElementById('liveBody').innerText = data.b;
         };
-        tmAxis.appendChild(node);
+
+        itemContainer.appendChild(node);
+        tmAxis.appendChild(itemContainer);
+
         if(i === 0) node.click();
     });
 
