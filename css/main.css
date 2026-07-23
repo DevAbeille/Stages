@@ -329,16 +329,14 @@ header p {
   flex-shrink: 0;
   transition: var(--transition);
 
-  /* Style par défaut (Ordinateur) : Orange HOC */
+  /* Style PAR DÉFAUT (1er rond : Ordinateur) -> Orange HOC */
   background-color: var(--primary);
   box-shadow: 0 0 10px rgba(255, 94, 58, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Cibler spécifiquement les pastilles qui contiennent l'émoji téléphone */
-/* (Ou le 2ème élément dans les indicateurs) */
-.status-circle:has(📱),
-.status-circle.mobile {
+/* Le DEUXIÈME rond (Téléphone) -> Fond Anthracite / Sombre */
+.device-indicators .status-circle:nth-child(2) {
   background-color: #0d1117;
   border: 1px solid var(--border-color);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
