@@ -12,14 +12,19 @@
   <link rel="stylesheet" href="../../css/main.css">
 
   <style>
+    /* Reset & Touch interactions */
+    button, .quiz-card, .switch-btn, .back-link, .source-link {
+      touch-action: manipulation;
+    }
+
     /* Navigation HOC */
     .header-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
     .back-link, .source-link {
@@ -43,16 +48,10 @@
       background-color: var(--card-bg-hover, #1f242d);
       color: var(--text-primary, #ffffff);
       border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
     }
 
-    .source-link {
-      color: #38bdf8;
-    }
-
-    .source-link:hover {
-      border-color: #38bdf8;
-    }
+    .source-link { color: #38bdf8; }
+    .source-link:hover { border-color: #38bdf8; }
 
     /* Badge interactif vers le jeu */
     .header-badge-link {
@@ -77,7 +76,6 @@
     .header-badge-link:hover {
       background: rgba(255, 94, 58, 0.2);
       border-color: var(--primary, #FF5E3A);
-      transform: translateY(-2px);
       color: #fff;
     }
 
@@ -93,9 +91,10 @@
     .filter-row {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
       justify-content: center;
+      width: 100%;
     }
 
     .filter-label {
@@ -104,22 +103,22 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted, #94a3b8);
-      min-width: 80px;
+      min-width: 70px;
       text-align: right;
     }
 
     /* Grille de cartes */
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
     }
 
     .tool-card {
       background: var(--card-bg, #161b22);
       border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
       border-radius: var(--radius-lg, 16px);
-      padding: 1.5rem;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -128,9 +127,7 @@
     }
 
     .tool-card:hover {
-      transform: translateY(-4px);
       background-color: var(--card-bg-hover, #1f242d);
-      box-shadow: var(--shadow-hover, 0 10px 15px -3px rgba(0, 0, 0, 0.4));
       border-color: var(--primary, #FF5E3A);
     }
 
@@ -143,7 +140,7 @@
     }
 
     .tool-card-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--text-primary, #ffffff);
       margin-bottom: 0.25rem;
@@ -166,7 +163,7 @@
     }
 
     .tool-card-body {
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       color: var(--text-secondary, #cbd5e1);
       line-height: 1.5;
       flex-grow: 1;
@@ -179,17 +176,17 @@
       background-color: var(--card-bg, #161b22);
       border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
       border-radius: var(--radius-lg, 16px);
-      padding: 2.5rem 2rem;
+      padding: 1.5rem;
       box-shadow: var(--shadow-sm, 0 4px 6px -1px rgba(0, 0, 0, 0.3));
     }
 
     .quiz-header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .quiz-header h2 {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: var(--text-primary, #ffffff);
       margin-bottom: 0.5rem;
@@ -198,19 +195,14 @@
     .quiz-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    @media (max-width: 768px) {
-      .quiz-grid { grid-template-columns: 1fr; }
-      .filter-label { text-align: center; min-width: auto; }
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
     .quiz-column h3 {
       font-size: 0.85rem;
       color: var(--primary, #FF5E3A);
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -220,19 +212,21 @@
     .quiz-card {
       background-color: var(--bg-color, #0d1117);
       border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-      padding: 1rem;
+      padding: 0.85rem;
       border-radius: 10px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.65rem;
       cursor: pointer;
       transition: var(--transition, all 0.2s ease);
       user-select: none;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       color: var(--text-primary, #ffffff);
+      min-height: 48px;
+      display: flex;
+      align-items: center;
     }
 
-    .quiz-card:hover {
-      border-color: var(--primary, #FF5E3A);
-      transform: translateX(2px);
+    .quiz-card:active {
+      transform: scale(0.98);
     }
 
     .quiz-card.selected {
@@ -245,8 +239,8 @@
       border-color: #22c55e;
       background-color: rgba(34, 197, 94, 0.1);
       cursor: default;
-      opacity: 0.7;
-      transform: none;
+      opacity: 0.6;
+      pointer-events: none;
     }
 
     .quiz-actions {
@@ -259,7 +253,7 @@
       background: var(--primary, #FF5E3A);
       color: #ffffff;
       border: none;
-      padding: 0.75rem 1.75rem;
+      padding: 0.75rem 1.5rem;
       font-size: 0.9rem;
       font-weight: 700;
       border-radius: var(--radius-pill, 50px);
@@ -268,25 +262,69 @@
       box-shadow: 0 4px 15px rgba(255, 94, 58, 0.3);
     }
 
-    .btn-hoc:hover {
-      background: #e04e2b;
-      transform: translateY(-2px);
-    }
+    .btn-hoc:hover { background: #e04e2b; }
 
     .score-board {
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
-      margin-top: 1.5rem;
+      margin-top: 1.25rem;
       color: #22c55e;
     }
 
-    .tab-content {
-      display: none;
-    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
 
-    .tab-content.active {
-      display: block;
+    /* OPTIMISATIONS RESPONSIVE / MOBILE (Skins & Ergonomie) */
+    @media (max-width: 768px) {
+      body {
+        padding: 0.75rem;
+      }
+
+      .header-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .back-link, .source-link {
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-label {
+        text-align: center;
+        min-width: auto;
+      }
+
+      .view-switcher {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .quiz-container {
+        padding: 1rem;
+      }
+
+      /* Quiz sur Mobile : Garder le côte à côte compact */
+      .quiz-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+
+      .quiz-card {
+        font-size: 0.775rem;
+        padding: 0.6rem;
+        min-height: 60px;
+      }
     }
   </style>
 </head>
@@ -303,12 +341,12 @@
     </div>
 
     <!-- Header Principal -->
-    <header>
+    <header style="text-align: center; margin-bottom: 1.5rem;">
       <a href="javascript:void(0)" class="header-badge-link" onclick="switchView('quiz')" id="topGameLink">
         🎮 Tester ses connaissances (Jeu des usages) ↗
       </a>
-      <h1>Répertoire & Quiz des Outils IA</h1>
-      <p id="headerSubtitle">Explorez et filtrez le catalogue des meilleurs outils IA du moment.</p>
+      <h1 style="font-size: 1.75rem; margin-top: 0.5rem;">Répertoire & Quiz des Outils IA</h1>
+      <p id="headerSubtitle" style="color: var(--text-muted, #94a3b8); font-size: 0.9rem;">Explorez et filtrez le catalogue des meilleurs outils IA du moment.</p>
     </header>
 
     <!-- ================= VUE 1 : CATALOGUE ================= -->
@@ -317,16 +355,12 @@
       <!-- Barre de recherche -->
       <div class="controls-bar" style="margin-bottom: 1.2rem;">
         <div class="search-box">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-          </svg>
-          <input type="text" id="searchInput" onkeyup="filterData()" placeholder="Rechercher un outil, un usage, un éditeur...">
+          <input type="text" id="searchInput" onkeyup="filterData()" placeholder="Rechercher un outil, un usage, un éditeur..." style="width: 100%; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: #fff;">
         </div>
       </div>
 
       <!-- Bloc Filtres Harmonisés -->
       <div class="filters-wrapper">
-        <!-- Ligne Éditeur -->
         <div class="filter-row">
           <span class="filter-label">Éditeur</span>
           <div class="view-switcher" id="editorFilters">
@@ -337,7 +371,6 @@
           </div>
         </div>
 
-        <!-- Ligne Usage (Sélection unique & Tag unique par carte) -->
         <div class="filter-row">
           <span class="filter-label">Usage</span>
           <div class="view-switcher" id="audienceFilters">
@@ -352,7 +385,6 @@
 
       <!-- Grille de Cartes pour les Outils -->
       <div class="tools-grid" id="toolsGrid">
-
         <!-- GOOGLE -->
         <div class="tool-card" data-editor="Google" data-audience="grand-public" data-search="gemini app google grand public web app mobile">
           <div>
@@ -366,9 +398,7 @@
               <span class="meta-item">Web + Mobile</span>
             </div>
           </div>
-          <div class="tool-card-body">
-            Démocratisation de l'IA au quotidien (Deep Think, génération d'images/vidéos).
-          </div>
+          <div class="tool-card-body">Démocratisation de l'IA au quotidien (Deep Think, génération d'images/vidéos).</div>
         </div>
 
         <div class="tool-card" data-editor="Google" data-audience="explorateur" data-search="google search labs live in search recherche web mobile">
@@ -383,9 +413,7 @@
               <span class="meta-item">Mobile + Web</span>
             </div>
           </div>
-          <div class="tool-card-body">
-            L'avenir de la recherche d'information fluide, visuelle et en temps réel.
-          </div>
+          <div class="tool-card-body">L'avenir de la recherche d'information fluide, visuelle et en temps réel.</div>
         </div>
 
         <div class="tool-card" data-editor="Google" data-audience="grand-public" data-search="gemini workspace docs gmail sheets productivité pme">
@@ -400,9 +428,7 @@
               <span class="meta-item">Intégré Web</span>
             </div>
           </div>
-          <div class="tool-card-body">
-            IA de productivité native, intégrée là où l'utilisateur travaille déjà (Docs, Gmail, Sheets).
-          </div>
+          <div class="tool-card-body">IA de productivité native, intégrée là où l'utilisateur travaille déjà (Docs, Gmail, Sheets).</div>
         </div>
 
         <div class="tool-card" data-editor="Google" data-audience="grand-public" data-search="notebooklm recherche synthèse audio overviews podcasts web">
@@ -417,128 +443,7 @@
               <span class="meta-item">Navigateur Web</span>
             </div>
           </div>
-          <div class="tool-card-body">
-            Synthèse de documents ultra-fiable et génération d'Audio Overviews (podcasts).
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Google" data-audience="explorateur" data-search="gemini spark project mariner cloud agent processus entreprise">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-outils">Google</span>
-              <span class="meta-item">Beta</span>
-            </div>
-            <div class="tool-card-title">Gemini Spark (Ex-Project Mariner)</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">🚀 Explorateur</span>
-              <span class="meta-item">Cloud Web</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            L'Agent Cloud 24/7 pour automatiser l'écosystème Google avec sécurité native.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Google" data-audience="visuels" data-search="flow creation labs veo imagen lyria vidéo hd design audio">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-outils">Google</span>
-              <span class="meta-item">Dogfood</span>
-            </div>
-            <div class="tool-card-title">Flow / Creation Labs (Veo, Imagen)</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">🎨 Visuels</span>
-              <span class="meta-item">Portails Web</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Génération multimédia professionnelle (Vidéo HD, design graphique, audio).
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Google" data-audience="dev" data-search="google ai studio développeurs prototypage api invites web">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-outils">Google</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">Google AI Studio</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">💻 Dev</span>
-              <span class="meta-item">Navigateur Web</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Atelier web rapide pour tester les invites, ajuster la température et obtenir des clés API.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Google" data-audience="dev" data-search="gemini code assist ide vs code jetbrains autocomplétion code">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-outils">Google</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">Gemini Code Assist</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">💻 Dev</span>
-              <span class="meta-item">Extension IDE</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Autocomplétion et refactoring de code au fil de la frappe.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Google" data-audience="dev" data-search="antigravity ide cli sdk agents autonomes studio">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-outils">Google</span>
-              <span class="meta-item">Suite d'outils</span>
-            </div>
-            <div class="tool-card-title">Suite Google Antigravity</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">💻 Dev</span>
-              <span class="meta-item">Desktop & CLI</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Studio de développement d'agents autonomes orchestrés de manière visuelle.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Google" data-audience="dev" data-search="gemini enterprise agent platform vertex cloud grandes entreprises">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-outils">Google</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">Gemini Enterprise Agent Platform</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">💻 Dev</span>
-              <span class="meta-item">Google Cloud</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Connecter l'IA de Google aux bases de données géantes et sécurisées d'entreprise.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Google" data-audience="explorateur" data-search="project astra vision assistant mémoire temporelle smartphone">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-outils">Google</span>
-              <span class="meta-item">R&D</span>
-            </div>
-            <div class="tool-card-title">Project Astra</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">🚀 Explorateur</span>
-              <span class="meta-item">Mobile / Lunettes</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Assistant visuel avec mémoire temporelle à long terme en temps réel.
-          </div>
+          <div class="tool-card-body">Synthèse de documents ultra-fiable et génération d'Audio Overviews (podcasts).</div>
         </div>
 
         <!-- ANTHROPIC -->
@@ -554,60 +459,7 @@
               <span class="meta-item">Web + Mobile</span>
             </div>
           </div>
-          <div class="tool-card-body">
-            Interface de conversation réputée pour sa finesse de rédaction et son raisonnement.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Anthropic" data-audience="grand-public" data-search="claude add-ons extensions connecteurs productivité pme">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-presentations">Anthropic</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">Claude Add-ons / Extensions</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">👤 Grand Public</span>
-              <span class="meta-item">Extensions Web</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Intégration du modèle Claude dans les flux bureautiques et outils métiers.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Anthropic" data-audience="explorateur" data-search="claude cowork desktop computer use agent écran clic entreprise">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-presentations">Anthropic</span>
-              <span class="meta-item">Beta</span>
-            </div>
-            <div class="tool-card-title">Claude Cowork (Computer Use)</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">🚀 Explorateur</span>
-              <span class="meta-item">Desktop / Agent</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Agent IA capable d'interagir directement avec l'écran et de cliquer/saisir à votre place.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Anthropic" data-audience="dev" data-search="anthropic console développeurs api prompts jetons web">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-presentations">Anthropic</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">Anthropic Console</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">💻 Dev</span>
-              <span class="meta-item">Navigateur Web</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Plateforme de test de prompts, gestion des clés API et suivi du coût des jetons.
-          </div>
+          <div class="tool-card-body">Interface de conversation réputée pour sa finesse de rédaction et son raisonnement.</div>
         </div>
 
         <div class="tool-card" data-editor="Anthropic" data-audience="dev" data-search="claude code cli développeurs ligne de commande terminal agent">
@@ -622,46 +474,10 @@
               <span class="meta-item">Ligne de commande</span>
             </div>
           </div>
-          <div class="tool-card-body">
-            Agent développeur autonome fonctionnant directement au cœur du terminal.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Anthropic" data-audience="dev" data-search="anthropic api aws bedrock gcp cloud grandes entreprises">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-presentations">Anthropic</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">Anthropic API (Bedrock / GCP)</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">💻 Dev</span>
-              <span class="meta-item">Cloud API</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Déploiement à grande échelle du modèle Claude au sein des architectures Cloud privées.
-          </div>
+          <div class="tool-card-body">Agent développeur autonome fonctionnant directement au cœur du terminal.</div>
         </div>
 
         <!-- AUTRES -->
-        <div class="tool-card" data-editor="Autres" data-audience="grand-public" data-search="chatgpt openai recherche rédaction analyse web mobile desktop">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-documents">Autres</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">ChatGPT / OpenAI</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">👤 Grand Public</span>
-              <span class="meta-item">Multi-plateforme</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            L'un des pionniers du domaine, idéal pour la recherche générale, la rédaction et l'analyse.
-          </div>
-        </div>
-
         <div class="tool-card" data-editor="Autres" data-audience="grand-public" data-search="perplexity ai answers moteur recherche réponse direct sources web">
           <div>
             <div class="tool-card-header">
@@ -674,60 +490,7 @@
               <span class="meta-item">Web & Mobile</span>
             </div>
           </div>
-          <div class="tool-card-body">
-            Moteur de réponse direct citant ses sources web en temps réel.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Autres" data-audience="grand-public" data-search="reddit answers moteur recherche avis utilisateurs synthèses">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-documents">Autres</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">Reddit Answers</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">👤 Grand Public</span>
-              <span class="meta-item">Web & Mobile</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Moteur de réponses IA de Reddit qui synthétise les retours d'expérience et avis d'utilisateurs réels.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Autres" data-audience="explorateur" data-search="communautés reddit r/chatgpt r/localllama forum veille prompts open-source">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-documents">Autres</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">Communautés Reddit (r/ChatGPT, r/LocalLLaMA)</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">🚀 Explorateur</span>
-              <span class="meta-item">Web & Mobile</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Espaces communautaires majeurs pour partager des prompts, suivre l'actu IA et échanger.
-          </div>
-        </div>
-
-        <div class="tool-card" data-editor="Autres" data-audience="visuels" data-search="midjourney flux.1 génération d'images artistiques photoréaliste">
-          <div>
-            <div class="tool-card-header">
-              <span class="badge badge-documents">Autres</span>
-              <span class="meta-item">Disponible</span>
-            </div>
-            <div class="tool-card-title">Midjourney / Flux.1</div>
-            <div class="tool-card-meta">
-              <span class="meta-item">🎨 Visuels</span>
-              <span class="meta-item">Web / Discord</span>
-            </div>
-          </div>
-          <div class="tool-card-body">
-            Génération d'images artistiques et photoréalistes de très haute qualité.
-          </div>
+          <div class="tool-card-body">Moteur de réponse direct citant ses sources web en temps réel.</div>
         </div>
 
         <div class="tool-card" data-editor="Autres" data-audience="dev" data-search="cursor ide éditeur code assistance génération ia vs code">
@@ -742,41 +505,34 @@
               <span class="meta-item">Desktop</span>
             </div>
           </div>
-          <div class="tool-card-body">
-            Éditeur de code entièrement repensé autour de l'assistance et la génération IA.
-          </div>
+          <div class="tool-card-body">Éditeur de code entièrement repensé autour de l'assistance et la génération IA.</div>
         </div>
-
       </div>
 
-      <!-- État vide -->
       <div class="empty-state" id="emptyState" style="display: none; text-align: center; padding: 3rem; color: var(--text-muted);">
         Aucun outil ne correspond à votre recherche.
       </div>
-
     </div>
 
     <!-- ================= VUE 2 : QUIZ ================= -->
     <div id="view-quiz" class="tab-content">
       <div class="quiz-container">
         <div class="quiz-header">
-          <h2>🎯 Associez l'Outil à son Usage principal</h2>
-          <p style="color: var(--text-secondary); font-size: 0.95rem;">5 outils sont tirés au sort. Cliquez sur un outil à gauche, puis sur son usage à droite !</p>
+          <h2>🎯 Associez l'Outil à son Usage</h2>
+          <p style="color: var(--text-secondary); font-size: 0.85rem;">Cliquez sur un outil à gauche, puis sur son usage à droite.</p>
         </div>
 
         <div class="quiz-grid">
           <div class="quiz-column" id="toolsColumn">
-            <h3>Outils IA</h3>
-            <!-- Dynamique -->
+            <h3>Outils</h3>
           </div>
           <div class="quiz-column" id="usagesColumn">
-            <h3>Usages & Descriptions</h3>
-            <!-- Dynamique -->
+            <h3>Usages</h3>
           </div>
         </div>
 
         <div class="quiz-actions">
-          <button class="btn-hoc" onclick="generateNewQuiz()">🎲 Nouveau Tirage au Sort</button>
+          <button class="btn-hoc" onclick="generateNewQuiz()">🎲 Nouveau Tirage</button>
         </div>
 
         <div class="score-board" id="quizScore">
@@ -788,7 +544,6 @@
   </div>
 
   <script>
-    // --- BASCULEMENT DE VUE (BIDIRECTIONNEL) ---
     function switchView(viewName) {
       const catView = document.getElementById('view-catalogue');
       const quizView = document.getElementById('view-quiz');
@@ -798,25 +553,19 @@
       if (viewName === 'quiz') {
         catView.classList.remove('active');
         quizView.classList.add('active');
-        
-        topBtn.innerHTML = '📋 ← Retour au Catalogue des Outils';
+        topBtn.innerHTML = '📋 ← Retour au Catalogue';
         topBtn.setAttribute('onclick', "switchView('catalogue')");
-        subtitle.innerText = "Testez vos connaissances en associant chaque outil IA à sa fonctionnalité clé.";
-        
-        if (quizData.length === 0) {
-          generateNewQuiz();
-        }
+        subtitle.innerText = "Associez chaque outil IA à sa fonctionnalité clé.";
+        if (quizData.length === 0) generateNewQuiz();
       } else {
         quizView.classList.remove('active');
         catView.classList.add('active');
-
-        topBtn.innerHTML = '🎮 Tester ses connaissances (Jeu des usages) ↗';
+        topBtn.innerHTML = '🎮 Tester ses connaissances (Jeu) ↗';
         topBtn.setAttribute('onclick', "switchView('quiz')");
         subtitle.innerText = "Explorez et filtrez le catalogue des meilleurs outils IA du moment.";
       }
     }
 
-    // --- FILTRES DU CATALOGUE (SÉLECTION ET TAG UNIQUE) ---
     let currentEditor = 'ALL';
     let currentAudience = 'ALL';
 
@@ -862,25 +611,20 @@
       document.getElementById('emptyState').style.display = (visibleCount === 0) ? 'block' : 'none';
     }
 
-    // --- LOGIQUE DU JEU / QUIZ (5 Outils tirés au sort) ---
     const allQuizItems = [
-      { tool: "NotebookLM", usage: "Synthèse de documents complexe et génération de podcasts audio (Audio Overviews)." },
-      { tool: "Claude Code (CLI)", usage: "Agent autonome s'exécutant directement dans le terminal du développeur." },
-      { tool: "Google AI Studio", usage: "Atelier web rapide pour tester des prompts et configurer des clés API." },
-      { tool: "Gemini pour Google Workspace", usage: "IA intégrée nativement dans Gmail, Google Docs et Sheets pour la productivité." },
-      { tool: "Perplexity AI / Answers", usage: "Moteur de recherche et de réponses directes citant ses sources web en temps réel." },
-      { tool: "Claude Cowork / Computer Use", usage: "Agent capable de contrôler l'écran d'un ordinateur pour exécuter des clics et des tâches." },
-      { tool: "Reddit Answers", usage: "Moteur de recherche IA de Reddit synthétisant les retours d'expérience et avis d'utilisateurs réels." },
-      { tool: "Communautés Reddit (r/ChatGPT, r/LocalLLaMA)", usage: "Forums majeurs de partage de prompts, d'actualités IA et de retours sur les modèles open-source." },
-      { tool: "Flow (Veo / Imagen)", usage: "Portail créatif dédié à la génération vidéo HD et graphique haute qualité." },
-      { tool: "Cursor IDE", usage: "Éditeur de code optimisé pour l'édition simultanée de plusieurs fichiers par IA." },
-      { tool: "Project Astra", usage: "Prototype d'assistant visuel multimodal intégrant une mémoire vidéo à long terme." }
+      { tool: "NotebookLM", usage: "Synthèse de documents & podcasts audio." },
+      { tool: "Claude Code (CLI)", usage: "Agent autonome dans le terminal dev." },
+      { tool: "Google AI Studio", usage: "Atelier web pour tester les API & prompts." },
+      { tool: "Gemini Workspace", usage: "IA intégrée à Gmail, Docs et Sheets." },
+      { tool: "Perplexity AI", usage: "Moteur de recherche citant ses sources." },
+      { tool: "Cursor IDE", usage: "Éditeur de code optimisé par l'IA." }
     ];
 
     let quizData = [];
     let selectedTool = null;
     let selectedUsage = null;
     let matchesCount = 0;
+    let isProcessing = false; // Anti-spam click
 
     function generateNewQuiz() {
       const shuffled = [...allQuizItems].sort(() => 0.5 - Math.random());
@@ -889,13 +633,14 @@
       matchesCount = 0;
       selectedTool = null;
       selectedUsage = null;
+      isProcessing = false;
       updateScore();
 
       const toolsCol = document.getElementById('toolsColumn');
       const usagesCol = document.getElementById('usagesColumn');
 
-      toolsCol.innerHTML = '<h3>Outils IA</h3>';
-      usagesCol.innerHTML = '<h3>Usages & Descriptions</h3>';
+      toolsCol.innerHTML = '<h3>Outils</h3>';
+      usagesCol.innerHTML = '<h3>Usages</h3>';
 
       const shuffledUsages = [...quizData].sort(() => 0.5 - Math.random());
 
@@ -919,7 +664,7 @@
     }
 
     function selectTool(card) {
-      if (card.classList.contains('matched')) return;
+      if (isProcessing || card.classList.contains('matched')) return;
       document.querySelectorAll('#toolsColumn .quiz-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       selectedTool = card;
@@ -927,7 +672,7 @@
     }
 
     function selectUsage(card) {
-      if (card.classList.contains('matched')) return;
+      if (isProcessing || card.classList.contains('matched')) return;
       document.querySelectorAll('#usagesColumn .quiz-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       selectedUsage = card;
@@ -942,29 +687,30 @@
           selectedTool.classList.add('matched');
           selectedUsage.classList.add('matched');
           matchesCount++;
+          selectedTool = null;
+          selectedUsage = null;
           updateScore();
         } else {
+          isProcessing = true;
           selectedTool.style.borderColor = '#ef4444';
           selectedUsage.style.borderColor = '#ef4444';
           setTimeout(() => {
             if (selectedTool) selectedTool.style.borderColor = '';
             if (selectedUsage) selectedUsage.style.borderColor = '';
+            document.querySelectorAll('.quiz-card').forEach(c => c.classList.remove('selected'));
             selectedTool = null;
             selectedUsage = null;
-            document.querySelectorAll('.quiz-card').forEach(c => c.classList.remove('selected'));
-          }, 500);
-          return;
+            isProcessing = false;
+          }, 400);
         }
-        selectedTool = null;
-        selectedUsage = null;
       }
     }
 
     function updateScore() {
       const scoreBoard = document.getElementById('quizScore');
-      scoreBoard.innerText = `Correspondances trouvées : ${matchesCount} / 5`;
+      scoreBoard.innerText = `Correspondances : ${matchesCount} / 5`;
       if (matchesCount === 5) {
-        scoreBoard.innerText = "🎉 Bravo ! Vous avez associé tous les outils avec succès !";
+        scoreBoard.innerText = "🎉 Bravo ! Vous avez tout associé !";
       }
     }
   </script>
