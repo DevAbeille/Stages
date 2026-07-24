@@ -203,7 +203,7 @@
     <!-- Header Principal -->
     <header class="header">
       <h1>Automatisation Google Drive & Reporting</h1>
-      <p>Un ensemble de 4 scripts interconnectés pour automatiser la création de dossiers, la centralisation des données, la mise à jour des suivis et la génération de présentations clients.</p>
+      <p>Un écosystème automatisé en 3 piliers pour générer vos fichiers, consolider les données projet et produire vos présentations automatiquement.</p>
     </header>
 
     <main>
@@ -212,85 +212,66 @@
       <section style="margin-bottom: 2rem;">
         <div class="pipeline-step pipeline-intro">
           <h2>💡 À quoi sert ce pipeline ?</h2>
-          <p>Plutôt que d'effectuer à la main la création de répertoires, la saisie de suivis et la mise en page de diapositives, nous avons mis en place une chaîne automatisée en 4 étapes. Elle garantit l'homogénéité des dossiers, gagne un temps précieux et élimine les erreurs de saisie.</p>
+          <p>Plutôt que d'effectuer la création de répertoires, la saisie de suivis et la mise en page de diapositives manuellement, nous avons mis en place un processus optimisé en 3 grands piliers. Il garantit l'homogénéité des données, supprime la double saisie et accélère le reporting.</p>
         </div>
       </section>
 
-      <!-- ÉTAPE 1 -->
+      <!-- BLOC 1 : GÉNÉRATION DES FICHIERS -->
       <div class="pipeline-step">
         <div class="step-header">
           <div class="step-number">1</div>
-          <h2 class="step-title">Initialisation du Projet & Structuration</h2>
+          <h2 class="step-title">Génération & Structuration des Fichiers</h2>
         </div>
         
-        <p><strong>En résumé :</strong> Ce script génère automatiquement l'arborescence complète du nouveau projet dans Google Drive avec tous ses sous-dossiers standards, puis enregistre l'ouverture du projet dans le fichier de suivi général.</p>
+        <p><strong>En résumé :</strong> Ce script automatise la création complète de l'arborescence Google Drive pour chaque nouveau projet avec tous ses sous-dossiers standards.</p>
         
         <ul>
-          <li><strong>Ce qu'il fait :</strong> Il crée l'ensemble des sous-dossiers requis et ajoute automatiquement une nouvelle ligne récapitulative dans le Google Sheet central.</li>
-          <li><strong>Gain :</strong> Plus besoin de copier-coller des dossiers à la main ni de risquer d'oublier d'enregistrer le projet dans le suivi.</li>
+          <li><strong>Fonctionnement :</strong> Il instancie automatiquement l'ensemble des répertoires requis selon un schéma prédéfini, garantissant qu'aucun fichier ou dossier de travail ne soit égaré.</li>
+          <li><strong>Gain :</strong> Une structure projet propre, homogène et immédiatement opérationnelle sans manipulation manuelle.</li>
         </ul>
 
         <div class="links-block">
-          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-link btn-script">💻 Voir le Script d'initialisation ↗</a>
-          <a href="https://docs.google.com/spreadsheets/d/1bYSeNkTiMlqjuTpbcf5B3m9ohFN6yuu3ygCLXJnW3-4/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="btn-link btn-target">📊 Ouvrir le Google Sheet de suivi central ↗</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-link btn-script">💻 Voir le Script de génération de fichiers ↗</a>
         </div>
       </div>
 
-      <!-- ÉTAPE 2 -->
+      <!-- BLOC 2 : EXTRACTION & CONSOLIDATION DES INFOS -->
       <div class="pipeline-step">
         <div class="step-header">
           <div class="step-number">2</div>
-          <h2 class="step-title">Scan des Dossiers & Fichier Synthèse</h2>
+          <h2 class="step-title">Extraction & Consolidation des Informations (Google Sheet)</h2>
         </div>
         
-        <p><strong>En résumé :</strong> Le script parcourt automatiquement tous les dossiers de projets existants pour récupérer l'ensemble des données à jour et les consolider au même endroit.</p>
+        <p><strong>En résumé :</strong> Une démarche d'analyse et d'extraction centralisée au sein du Google Sheet de suivi central, articulée autour de 3 scripts dédiés réunis dans le même projet Apps Script.</p>
         
         <ul>
-          <li><strong>Ce qu'il fait :</strong> Il analyse l'arborescence du projet et crée, à chaque analyse, un nouvel onglet daté dans le "Fichier Synthèse".</li>
-          <li><strong>Gain :</strong> Une vue panoramique et historisée de tous les projets, actualisée sans aucun travail de compilation manuel.</li>
+          <li><strong>Scannage des dossiers :</strong> Parcourt automatiquement l'arborescence Google Drive pour consolider les données dans le Fichier Synthèse.</li>
+          <li><strong>Extraction ciblée :</strong> Extrait dynamiquement les informations de la partie la plus récente de la synthèse pour alimenter le suivi.</li>
+          <li><strong>Mise à jour en 1 clic :</strong> L'ensemble du processus est déclenchable directement via le bouton dédié intégré au Google Sheet.</li>
         </ul>
 
         <div class="links-block">
-          <a href="https://script.google.com/u/0/home/projects/1hJwHSz0woVwdleKW3KNWceEyW7qckNLiu9KoxZ03FhaGr7lk_bCrNVKC/edit" target="_blank" rel="noopener noreferrer" class="btn-link btn-script">💻 Voir le Script d'analyse ↗</a>
+          <a href="https://script.google.com/u/0/home/projects/1hJwHSz0woVwdleKW3KNWceEyW7qckNLiu9KoxZ03FhaGr7lk_bCrNVKC/edit" target="_blank" rel="noopener noreferrer" class="btn-link btn-script">💻 Accéder aux 3 Scripts d'extraction ↗</a>
+          <a href="https://docs.google.com/spreadsheets/d/1bYSeNkTiMlqjuTpbcf5B3m9ohFN6yuu3ygCLXJnW3-4/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="btn-link btn-target">📊 Ouvrir le Google Sheet de suivi ↗</a>
         </div>
       </div>
 
-      <!-- ÉTAPE 3 (NOUVEAU BLOC) -->
+      <!-- BLOC 3 : GÉNÉRATION DES SLIDES -->
       <div class="pipeline-step">
         <div class="step-header">
           <div class="step-number">3</div>
-          <h2 class="step-title">Extraction & Mise à Jour du Google Sheet</h2>
+          <h2 class="step-title">Génération Automatique des Slides Références</h2>
         </div>
         
-        <p><strong>En résumé :</strong> Un script dédié extrait les données les plus récentes du Fichier Synthèse afin de maintenir le Google Sheet de suivi parfaitement synchronisé.</p>
+        <p><strong>En résumé :</strong> Ce module extrait les données consolidées du projet pour alimenter et mettre à jour le fichier contenant l'ensemble des diapositives de référence.</p>
         
         <ul>
-          <li><strong>Ce qu'il fait :</strong> Il analyse la partie la plus récente du fichier synthèse, en extrait les informations clés et vient alimenter automatiquement les colonnes correspondantes dans le Google Sheet principal.</li>
-          <li><strong>Gain :</strong> Une garantie que les données du suivi général reflètent en temps réel les informations les plus fraîches de la synthèse.</li>
+          <li><strong>Fonctionnement :</strong> Il lit les variables extraites et vient injecter les valeurs dans les masques de diapositives du fichier Google Slides maître via un simple bouton d'action.</li>
+          <li><strong>Gain :</strong> Un support de présentation complet, harmonisé et toujours à jour, généré sans effort de mise en page.</li>
         </ul>
 
         <div class="links-block">
-          <a href="https://script.google.com/u/0/home/projects/1hJwHSz0woVwdleKW3KNWceEyW7qckNLiu9KoxZ03FhaGr7lk_bCrNVKC/edit" target="_blank" rel="noopener noreferrer" class="btn-link btn-script">💻 Voir le Script d'extraction ↗</a>
-        </div>
-      </div>
-
-      <!-- ÉTAPE 4 (ANCIENNE ÉTAPE 3) -->
-      <div class="pipeline-step">
-        <div class="step-header">
-          <div class="step-number">4</div>
-          <h2 class="step-title">Génération Automatique de la Slide Projet</h2>
-        </div>
-        
-        <p><strong>En résumé :</strong> Ce script extrait les informations clés du Fichier Synthèse et vient remplir automatiquement un modèle de présentation Google Slides officiel.</p>
-        
-        <ul>
-          <li><strong>Ce qu'il fait :</strong> Il repère des balises spécifiques (ex: <code>{{NomProjet}}</code>, <code>{{Statut}}</code>) dans une diapositive de référence et les remplace par les données réelles du projet.</li>
-          <li><strong>Gain :</strong> Un support de présentation prêt à être projeté ou envoyé aux parties prenantes en un instant.</li>
-        </ul>
-
-        <div class="links-block">
-          <a href="https://script.google.com/u/0/home/projects/1hJwHSz0woVwdleKW3KNWceEyW7qckNLiu9KoxZ03FhaGr7lk_bCrNVKC/edit" target="_blank" rel="noopener noreferrer" class="btn-link btn-script">💻 Voir le Script de génération Slides ↗</a>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-link btn-target">🖼️ Ouvrir le Modèle Google Slides de référence ↗</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-link btn-target">🖼️ Ouvrir le Fichier de référence Google Slides ↗</a>
         </div>
       </div>
 
