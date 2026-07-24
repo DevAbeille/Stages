@@ -1,379 +1,491 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation & Guide — House of Codesign</title>
-    
-    <!-- Import du CSS centralisé HOC -->
-    <link rel="stylesheet" href="css/main.css">
-    
-    <style>
-        .doc-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        .doc-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.75rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .doc-section h2 {
-            margin-top: 0;
-            color: var(--text-primary);
-            font-size: 1.35rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.75rem;
-        }
-
-        /* --- STYLES DES FIGURES & IMAGES --- */
-        .doc-figure {
-            margin: 1.5rem 0;
-            border: 1px dashed var(--border-color);
-            background: var(--bg-color);
-            border-radius: var(--radius-lg);
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .doc-figure img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-            display: block;
-            margin: 0 auto 0.75rem auto;
-        }
-
-        .doc-figure figcaption {
-            font-size: 0.825rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-        }
-
-        /* --- AUTRES COMPOSANTS --- */
-        .file-tree {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem 1.25rem;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.875rem;
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: auto;
-        }
-
-        .file-tree .folder { color: var(--primary); font-weight: bold; }
-        .file-tree .file { color: var(--text-secondary); }
-        .file-tree .comment { color: var(--text-muted); font-style: italic; }
-
-        .steps-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .steps-list li {
-            position: relative;
-            padding-left: 2.5rem;
-            margin-bottom: 1.75rem;
-        }
-
-        .step-number {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 1.75rem;
-            height: 1.75rem;
-            background: var(--primary-light);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.85rem;
-        }
-
-        .code-inline {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 0.85em;
-            color: var(--primary);
-        }
-
-        .callout-info {
-            background: var(--primary-light);
-            border-left: 4px solid var(--primary);
-            padding: 1rem 1.25rem;
-            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-            margin: 1.5rem 0;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-        }
-
-        .github-banner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg-hover) 100%);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--primary);
-            border-radius: var(--radius-lg);
-            padding: 1.25rem 1.75rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .btn-github {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--primary);
-            color: #ffffff;
-            padding: 0.6rem 1.25rem;
-            border-radius: var(--radius-pill);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .btn-github:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-    </style>
-
-    <!-- Auto-Theme Script -->
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.documentElement.classList.add('light-theme');
-            } else {
-                document.documentElement.classList.remove('light-theme');
-            }
-        })();
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hub de Ressources & Documents</title>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-    <div class="doc-container">
+  <div class="container">
+    
+    <!-- En-tête -->
+    <header class="header">
+      <!-- Bouton Switch de Thème (S'aligne en haut à droite) -->
+      <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+        <button id="theme-toggle" class="switch-btn" onclick="toggleTheme()" title="Changer de thème">
+          🌙 Thème Sombre
+        </button>
+      </div>
+
+      <h1>Hub de Ressources</h1>
+      <p>Retrouvez l'ensemble des documents, outils et présentations centralisés.</p>
+      
+      <!-- Boutons de basculement de Vue -->
+      <div class="view-switcher">
+        <button class="switch-btn active" onclick="switchView(event, 'view-types')">📁 Vue par Types</button>
+        <button class="switch-btn" onclick="switchView(event, 'view-projects')">🎯 Vue par Projets</button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ================================================================= -->
+      <!-- VUE 1 : PAR TYPES DE DOCUMENTS (Documents, Outils, Présentations) -->
+      <!-- ================================================================= -->
+      <div id="view-types" class="view-content active">
         
-        <a href="index.html" class="btn-back">&larr; RETOUR AU HUB PRINCIPAL</a>
-
-        <div class="header" style="text-align: left; margin-bottom: 1.5rem;">
-            <h1>Guide & Documentation Utilisateur</h1>
-            <p>Retrouvez ici la structure du projet et comment utiliser/alimenter le catalogue facilement sans coder.</p>
-        </div>
-
-        <!-- BANNIÈRE GITHUB -->
-        <div class="github-banner">
-            <div>
-                <strong style="font-size: 1.1rem; color: var(--text-primary); display: block; margin-bottom: 0.25rem;">
-                    📦 Dépôt GitHub du Projet
-                </strong>
-                <span style="font-size: 0.875rem; color: var(--text-secondary);">
-                    Accédez aux fichiers sources pour consulter ou ajouter du contenu directement en ligne.
-                </span>
-            </div>
-            <a href="https://github.com/devabeille/Catalogue-projets-stagesIA" target="_blank" rel="noopener" class="btn-github">
-                <span>Voir sur GitHub</span> &rarr;
+        <!-- Section Documents -->
+        <section class="section">
+          <h2 class="section-title">📄 Documents & Formations</h2>
+          <div class="grid">
+            
+            <a href="./documents/journees-formation/niv 1 et 2/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Formation IA — Niv 1 & 2</h3>
+                <p>Supports et ressources pour le niveau initial des formations IA.</p>
+              </div>
+              <div class="card-footer">
+                <span>Journées Formation</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
             </a>
-        </div>
 
-        <!-- SECTION 0 : CONNEXION & RECHERCHE DU DÉPÔT -->
-        <div class="doc-section">
-            <h2>🔑 1. Se connecter et trouver le dépôt</h2>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">
-                Avant de pouvoir modifier ou ajouter des documents, vous devez être connecté à votre compte GitHub et accéder au projet de l'organisation.
-            </p>
+            <a href="./documents/journees-formation/niv 3 et 4/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Formation IA — Niv 3 & 4</h3>
+                <p>Supports avancés et cas pratiques pour le niveau expérimenté.</p>
+              </div>
+              <div class="card-footer">
+                <span>Journées Formation</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-            <ul class="steps-list">
-                <li>
-                    <span class="step-number">1</span>
-                    <strong style="color: var(--text-primary);">Connexion à GitHub</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Rendez-vous sur <a href="https://github.com" target="_blank" style="color: var(--primary);">github.com</a> et connectez-vous avec vos identifiants via le bouton <strong>Sign in</strong> en haut à droite.
-                    </span>
+            <a href="./documents/liste-outils-ia/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Liste des Outils IA</h3>
+                <p>Panorama des meilleurs outils IA pour le quotidien, la création et le dev.</p>
+              </div>
+              <div class="card-footer">
+                <span>Ressources</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-                    <figure class="doc-figure">
-                        <!-- IMAGE 00-a -->
-                        <img src="img/00-connexion-au-github.png" alt="Page de connexion à GitHub">
-                        <figcaption>📸 Figure 1 : Écran de connexion GitHub (Sign in)</figcaption>
-                    </figure>
-                </li>
+            <a href="./documents/liste-idees-ia/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Liste des Idées IA</h3>
+                <p>Catalogue des pistes R&D, idées de projets et cas d'usages IA issus des ateliers.</p>
+              </div>
+              <div class="card-footer">
+                <span>Ressources</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-                <li>
-                    <span class="step-number">2</span>
-                    <strong style="color: var(--text-primary);">Trouver le dépôt du projet</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Accédez à l'organisation ou recherchez <span class="code-inline">Catalogue-projets-stagesIA</span> dans la barre de recherche en haut de page pour ouvrir le projet.
-                    </span>
+            <a href="https://miro.com/app/board/uXjVHRDymLs=/?share_link_id=592314307689" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Recommandé sur ordinateur">💻</span>
+                  </div>
+                </div>
+                <h3>Espace Miro</h3>
+                <p>Lien et restitution des tableaux blancs collaboratifs Miro.</p>
+              </div>
+              <div class="card-footer">
+                <span>Ressources</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-                    <figure class="doc-figure">
-                        <!-- IMAGE 00-b -->
-                        <img src="img/00-trouver-le-depot.png" alt="Recherche et accès au dépôt sur GitHub">
-                        <figcaption>📸 Figure 2 : Recherche et sélection du dépôt dans l'organisation</figcaption>
-                    </figure>
-                </li>
-            </ul>
-        </div>
+          </div>
+        </section>
 
-        <!-- SECTION 1 : RETROUVER LE TRAVAIL -->
-        <div class="doc-section">
-            <h2>🔎 2. Explorer le contenu du projet</h2>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">
-                Tout le travail finalisé est consultable directement depuis votre navigateur web, sans installer aucun logiciel.
-            </p>
+        <!-- Section Outils -->
+        <section class="section">
+          <h2 class="section-title">🛠️ Outils & Scripts</h2>
+          <div class="grid">
 
-            <figure class="doc-figure">
-                <img src="img/01-depot-github.png" alt="Interface du dépôt GitHub devabeille">
-                <figcaption>📸 Figure 3 : Aperçu du dépôt GitHub et de l'arborescence des fichiers</figcaption>
-            </figure>
+            <a href="https://hoc-capture-vocale.vercel.app" target="_blank" rel="noopener noreferrer" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                   <span class="badge badge-outils">Application Externe ↗</span>
+                   <div class="device-indicators">
+                     <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                     <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                   </div>
+                </div>
+                <h3>HOC Capture</h3>
+                <p>Outil de capture et de documentation rapide.</p>
+              </div>
+              <div class="card-footer">
+                <span>Lancer l'App</span>
+                <span class="card-link-text">Ouvrir ↗</span>
+              </div>
+            </a>
 
-            <div class="callout-info">
-                💡 <strong>Astuce :</strong> Vous pouvez lire tous les documents (.md, .html) directement sur GitHub sans avoir à les télécharger sur votre ordinateur.
-            </div>
-        </div>
+            <!-- SANS INDICATEURS (Exclu : HOC Formation) -->
+            <a href="./outils/hoc-formation/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-outils">Outil</span>
+                </div>
+                <h3>HOC Formation</h3>
+                <p>Module interactif dédié au suivi des formations.</p>
+              </div>
+              <div class="card-footer">
+                <span>Application</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-        <!-- SECTION 2 : MODIFIER UN FICHIER -->
-        <div class="doc-section">
-            <h2>✏️ 3. Modifier un fichier existant (sans coder)</h2>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">
-                Pour corriger une coquille ou mettre à jour un texte directement depuis votre navigateur :
-            </p>
+            <a href="./outils/scripts/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-outils">Outil</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Ordi uniquement">💻</span>
+                  </div>
+                </div>
+                <h3>Scripts Références Projets</h3>
+                <p>Scripts Google Apps Script pour centraliser les données et générer les slides.</p>
+              </div>
+              <div class="card-footer">
+                <span>Code</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-            <ul class="steps-list">
-                <li>
-                    <span class="step-number">1</span>
-                    <strong style="color: var(--text-primary);">Ouvrir le fichier</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Cliquez sur le fichier que vous souhaitez modifier pour afficher son contenu.
-                    </span>
-                </li>
+          </div>
+        </section>
 
-                <li>
-                    <span class="step-number">2</span>
-                    <strong style="color: var(--text-primary);">Cliquer sur le Crayon ✏️</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        En haut à droite du texte, appuyez sur l'icône d'édition.
-                    </span>
+        <!-- Section Présentations -->
+        <section class="section">
+          <h2 class="section-title">📊 Présentations</h2>
+          <div class="grid">
 
-                    <figure class="doc-figure">
-                        <img src="img/02-bouton-crayon.png" alt="Bouton Crayon pour éditer sur GitHub">
-                        <figcaption>📸 Figure 4 : Emplacement du bouton Crayon (Edit this file)</figcaption>
-                    </figure>
-                </li>
+            <a href="./presentations/histoire-ia/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-presentations">Présentation</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Histoire de l'IA</h3>
+                <p>Retracez les grandes étapes et évolutions de l'Intelligence Artificielle.</p>
+              </div>
+              <div class="card-footer">
+                <span>Diaporama</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-                <li>
-                    <span class="step-number">3</span>
-                    <strong style="color: var(--text-primary);">Enregistrer (Commit)</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Cliquez sur le bouton vert <strong>Commit changes...</strong> en haut à droite, ajoutez un petit mot explicatif et validez.
-                    </span>
-                </li>
-            </ul>
-        </div>
+            <a href="./presentations/notebooklm/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-presentations">Présentation</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Guide NotebookLM</h3>
+                <p>Présentation complète de l'outil NotebookLM et de ses usages.</p>
+              </div>
+              <div class="card-footer">
+                <span>Diaporama</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-        <!-- SECTION 3 : CRÉER FICHIER ET DOSSIER -->
-        <div class="doc-section">
-            <h2>📁 4. Ajouter un fichier ou créer un dossier par son nom</h2>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">
-                Vous n'avez pas besoin de créer des dossiers sur votre ordinateur : vous pouvez tout faire depuis le champ texte de GitHub.
-            </p>
+          </div>
+        </section>
 
-            <ul class="steps-list">
-                <li>
-                    <span class="step-number">1</span>
-                    <strong style="color: var(--text-primary);">Lancer la création</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Cliquez sur <strong>Add file</strong> &gt; <strong>Create new file</strong>.
-                    </span>
-                </li>
+      </div>
 
-                <li>
-                    <span class="step-number">2</span>
-                    <strong style="color: var(--text-primary);">Nommer le fichier et le dossier</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Dans le champ <i>Name your file...</i>, tapez le nom du dossier suivi d'un slash <span class="code-inline">/</span>, puis le nom du fichier.
-                    </span>
 
-                    <figure class="doc-figure">
-                        <img src="img/03-nom-dossier.png" alt="Saisie de nom avec slash pour créer un dossier">
-                        <figcaption>📸 Figure 5 : Taper "nom-dossier/fichier.md" crée automatiquement le dossier !</figcaption>
-                    </figure>
-                </li>
+      <!-- ================================================================= -->
+      <!-- VUE 2 : PAR PROJETS (Formations IA, Outils Métier, etc.)          -->
+      <!-- ================================================================= -->
+      <div id="view-projects" class="view-content" style="display: none;">
+        
+        <!-- Projet : Formations à l'IA -->
+        <section class="section">
+          <h2 class="section-title">🎓 Projet : Formations à l'IA</h2>
+          <p class="section-subtitle">Retrouvez tous les documents, cours et diaporamas associés aux parcours de formation IA.</p>
+          
+          <div class="grid">
 
-                <li>
-                    <span class="step-number">3</span>
-                    <strong style="color: var(--text-primary);">Rédiger et Valider</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Écrivez votre texte dans le grand rectangle en dessous, puis cliquez sur <strong>Commit changes...</strong> pour publier.
-                    </span>
+            <a href="./documents/journees-formation/niv 1 et 2/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Formation IA — Niv 1 & 2</h3>
+                <p>Supports de cours et cas d'usage pratiques pour débuter.</p>
+              </div>
+              <div class="card-footer">
+                <span>Niveau 1 & 2</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-                    <figure class="doc-figure">
-                        <img src="img/04-commit-validation.png" alt="Fenêtre de confirmation de commit">
-                        <figcaption>📸 Figure 6 : Validation du Commit pour appliquer les changements</figcaption>
-                    </figure>
-                </li>
-            </ul>
-        </div>
+            <a href="./documents/journees-formation/niv 3 et 4/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Formation IA — Niv 3 & 4</h3>
+                <p>Approfondissement et automatisation avancée.</p>
+              </div>
+              <div class="card-footer">
+                <span>Niveau 3 & 4</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-        <!-- ARBORESCENCE TECHNIQUE -->
-        <div class="doc-section">
-            <h2>🗂️ 5. Structure des dossiers sur le projet</h2>
-            <div class="file-tree">
-                <span class="folder">Catalogue-projets-stagesIA/</span><br>
-                ├── <span class="file">index.html</span> <span class="comment">← Page d'accueil du Hub</span><br>
-                ├── <span class="file">doc.html</span> <span class="comment">← La présente documentation</span><br>
-                ├── <span class="folder">img/</span><br>
-                │   ├── <span class="file">00-connexion-au-github.png</span><br>
-                │   ├── <span class="file">00-trouver-le-depot.png</span><br>
-                │   ├── <span class="file">01-depot-github.png</span><br>
-                │   ├── <span class="file">02-bouton-crayon.png</span><br>
-                │   ├── <span class="file">03-nom-dossier.png</span><br>
-                │   └── <span class="file">04-commit-validation.png</span><br>
-                ├── <span class="folder">css/</span><br>
-                │   └── <span class="file">main.css</span> <span class="comment">← Style global (House of Codesign)</span><br>
-                └── <span class="folder">documents/</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">journees-formation/</span> <span class="comment">← Les tableaux de bord/planning</span>
-            </div>
-        </div>
+            <a href="./presentations/histoire-ia/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-presentations">Présentation</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Histoire de l'IA</h3>
+                <p>Introduction à la culture générale et historique de l'IA.</p>
+              </div>
+              <div class="card-footer">
+                <span>Introduction</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
 
-    </div>
+            <a href="./presentations/notebooklm/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-presentations">Présentation</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Guide NotebookLM</h3>
+                <p>Analyse de documents et génération de résumés intelligents.</p>
+              </div>
+              <div class="card-footer">
+                <span>Outil IA</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
+
+            <a href="./documents/liste-outils-ia/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Liste des Outils IA</h3>
+                <p>Panorama des meilleurs outils IA pour le quotidien, la création et le dev.</p>
+              </div>
+              <div class="card-footer">
+                <span>Répertoire</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
+
+            <a href="./documents/liste-idees-ia/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                    <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                  </div>
+                </div>
+                <h3>Liste des Idées IA</h3>
+                <p>Catalogue des pistes R&D, idées de projets et cas d'usages IA issus des ateliers.</p>
+              </div>
+              <div class="card-footer">
+                <span>Ressources</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- Projet : Suite d'Outils HOC & Scripts -->
+        <section class="section">
+          <h2 class="section-title">⚙️ Projet : Suite HOC & Scripts Internes</h2>
+          <p class="section-subtitle">Applications et utilitaires développés pour la capture et le suivi.</p>
+
+          <div class="grid">
+
+            <a href="https://hoc-capture-vocale.vercel.app" target="_blank" rel="noopener noreferrer" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                   <span class="badge badge-outils">Application Externe ↗</span>
+                   <div class="device-indicators">
+                     <span class="status-circle recommended" title="Disponible sur ordinateur">💻</span>
+                     <span class="status-circle recommended" title="Disponible sur mobile">📱</span>
+                   </div>
+                </div>
+                <h3>HOC Capture</h3>
+                <p>Outil de capture et de documentation rapide.</p>
+              </div>
+              <div class="card-footer">
+                <span>Lancer l'App</span>
+                <span class="card-link-text">Ouvrir ↗</span>
+              </div>
+            </a>
+
+            <!-- SANS INDICATEURS (Exclu : HOC Formation) -->
+            <a href="./outils/hoc-formation/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-outils">Outil</span>
+                </div>
+                <h3>HOC Formation</h3>
+                <p>Tableau de suivi des formations HOC.</p>
+              </div>
+              <div class="card-footer">
+                <span>Suivi</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
+
+            <a href="./outils/scripts/" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-outils">Outil</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Ordi uniquement">💻</span>
+                  </div>
+                </div>
+                <h3>Scripts Références Projets</h3>
+                <p>Scripts Google Apps Script pour centraliser les données et générer les slides.</p>
+              </div>
+              <div class="card-footer">
+                <span>Scripts</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
+
+            <a href="https://miro.com/app/board/uXjVHRDymLs=/?share_link_id=592314307689" class="card">
+              <div class="card-body">
+                <div class="card-header">
+                  <span class="badge badge-documents">Document</span>
+                  <div class="device-indicators">
+                    <span class="status-circle recommended" title="Recommandé sur ordinateur">💻</span>
+                  </div>
+                </div>
+                <h3>Espace Miro</h3>
+                <p>Tableaux de cadrage et réflexion collaborative.</p>
+              </div>
+              <div class="card-footer">
+                <span>Miro</span>
+                <span class="card-link-text">Voir &rarr;</span>
+              </div>
+            </a>
+
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    // Basculement des vues (Types vs Projets)
+    function switchView(event, targetViewId) {
+      const views = document.querySelectorAll('.view-content');
+      views.forEach(view => view.style.display = 'none');
+
+      const buttons = document.querySelectorAll('.view-switcher .switch-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(targetViewId).style.display = 'block';
+      event.currentTarget.classList.add('active');
+    }
+
+    // Gestion du Thème (Clair / Sombre)
+    function toggleTheme() {
+      const body = document.body;
+      const themeBtn = document.getElementById('theme-toggle');
+      
+      body.classList.toggle('light-theme');
+      
+      if (body.classList.contains('light-theme')) {
+        themeBtn.textContent = '☀️ Thème Clair';
+        localStorage.setItem('theme', 'light');
+      } else {
+        themeBtn.textContent = '🌙 Thème Sombre';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Application du thème mémorisé au chargement
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        document.getElementById('theme-toggle').textContent = '☀️ Thème Clair';
+      }
+    });
+  </script>
 
 </body>
+  <footer style="margin-top: 3rem; padding: 1.5rem 0; text-align: center; border-top: 1px solid var(--border-color, #30363d);">
+  <a href="doc.html" style="color: var(--text-muted, #8b949e); font-size: 0.825rem; font-weight: 600; text-decoration: none; opacity: 0.75; transition: all 0.2s ease;" onmouseover="this.style.opacity='1'; this.style.color='var(--primary, #ff5e3a)';" onmouseout="this.style.opacity='0.75'; this.style.color='var(--text-muted, #8b949e)';">
+    📖 Documentation & Guide GitHub
+  </a>
+</footer>
 </html>
