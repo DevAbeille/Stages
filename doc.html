@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation — HUB House of Codesign</title>
+    <title>Documentation & Guide — House of Codesign</title>
     
-    <!-- Import du CSS centralisé -->
+    <!-- Import du CSS centralisé HOC -->
     <link rel="stylesheet" href="css/main.css">
     
     <style>
@@ -35,6 +35,37 @@
             padding-bottom: 0.75rem;
         }
 
+        /* --- STYLES DES FIGURES & IMAGES --- */
+        .doc-figure {
+            margin: 1.5rem 0;
+            border: 1px dashed var(--border-color);
+            background: var(--bg-color);
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .doc-figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            display: block;
+            margin: 0 auto 0.75rem auto;
+        }
+
+        .doc-figure figcaption {
+            font-size: 0.825rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        /* --- AUTRES COMPOSANTS --- */
         .file-tree {
             background: var(--bg-color);
             border: 1px solid var(--border-color);
@@ -60,11 +91,7 @@
         .steps-list li {
             position: relative;
             padding-left: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .steps-list li:last-child {
-            margin-bottom: 0;
+            margin-bottom: 1.75rem;
         }
 
         .step-number {
@@ -92,6 +119,16 @@
             font-family: monospace;
             font-size: 0.85em;
             color: var(--primary);
+        }
+
+        .callout-info {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: var(--text-primary);
         }
 
         .github-banner {
@@ -125,7 +162,6 @@
         .btn-github:hover {
             background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 94, 58, 0.3);
         }
 
         .btn-back {
@@ -137,10 +173,6 @@
             font-weight: 700;
             font-size: 0.85rem;
             margin-bottom: 1rem;
-        }
-
-        .btn-back:hover {
-            text-decoration: underline;
         }
     </style>
 
@@ -163,8 +195,8 @@
         <a href="index.html" class="btn-back">&larr; RETOUR AU HUB PRINCIPAL</a>
 
         <div class="header" style="text-align: left; margin-bottom: 1.5rem;">
-            <h1>Guide & Documentation Technique</h1>
-            <p>Retrouvez ici la structure du projet et la marche à suivre pour éditer ou ajouter de nouvelles ressources.</p>
+            <h1>Guide & Documentation Utilisateur</h1>
+            <p>Retrouvez ici la structure du projet et comment utiliser/alimenter le catalogue facilement sans coder.</p>
         </div>
 
         <!-- BANNIÈRE GITHUB -->
@@ -174,97 +206,130 @@
                     📦 Dépôt GitHub du Projet
                 </strong>
                 <span style="font-size: 0.875rem; color: var(--text-secondary);">
-                    Accédez aux fichiers sources, gérez les versions ou ajoutez du contenu directement en ligne.
+                    Accédez aux fichiers sources pour consulter ou ajouter du contenu directement en ligne.
                 </span>
             </div>
             <a href="https://github.com/devabeille/Catalogue-projets-stagesIA" target="_blank" rel="noopener" class="btn-github">
-                <span> Voir sur GitHub</span> &rarr;
+                <span>Voir sur GitHub</span> &rarr;
             </a>
         </div>
 
-        <!-- ARBORESCENCE DES FICHIERS -->
+        <!-- SECTION 1 : RETROUVER LE TRAVAIL -->
         <div class="doc-section">
-            <h2>📁 Arborescence & Emplacement des fichiers</h2>
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                Voici comment sont organisés les dossiers sur le serveur GitHub Pages :
+            <h2>🔎 1. Accéder aux documents et au catalogue</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                Tout le travail finalisé est hébergé sur le compte GitHub de l'organisation. Vous n'avez besoin d'aucun logiciel particulier : un simple navigateur web suffit !
             </p>
 
-            <div class="file-tree">
-                <span class="folder">Catalogue-projets-stagesIA/</span><br>
-                ├── <span class="file">index.html</span> <span class="comment">← Page d'accueil / Hub principal</span><br>
-                ├── <span class="file">doc.html</span> <span class="comment">← La présente documentation</span><br>
-                ├── <span class="folder">css/</span><br>
-                │   └── <span class="file">main.css</span> <span class="comment">← Feuillets de styles centralisés (HOC)</span><br>
-                └── <span class="folder">documents/</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">journees-formation/</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">niv1 et 2/</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│   └── <span class="file">index.html</span> <span class="comment">← Dashboard Planning Niv 1 & 2</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">niv3 et 4/</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="file">index.html</span> <span class="comment">← Dashboard Planning Niv 3 & 4</span>
+            <figure class="doc-figure">
+                <!-- AJOUTE TON IMAGE ICI (ex: img/01-depot-github.png) -->
+                <img src="img/01-depot-github.png" alt="Interface de l'organisation GitHub devabeille">
+                <figcaption>📸 Figure 1 : Aperçu du dépôt GitHub et de l'arborescence des projets</figcaption>
+            </figure>
+
+            <div class="callout-info">
+                💡 <strong>Astuce :</strong> Vous pouvez lire tous les documents (.md, .html) directement sur GitHub sans avoir à les télécharger sur votre ordinateur.
             </div>
         </div>
 
-        <!-- COMMENT AJOUTER UNE RESSOURCE -->
+        <!-- SECTION 2 : MOFIER UN FICHIER -->
         <div class="doc-section">
-            <h2>✍️ Comment ajouter ou modifier du contenu ?</h2>
-            
+            <h2>✏️ 2. Modifier un fichier existant (sans coder)</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                Pour corriger une coquille ou mettre à jour un texte directement depuis votre navigateur :
+            </p>
+
             <ul class="steps-list">
                 <li>
                     <span class="step-number">1</span>
-                    <strong style="color: var(--text-primary);">Ouvrir le dépôt GitHub</strong><br>
+                    <strong style="color: var(--text-primary);">Ouvrir le fichier</strong><br>
                     <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Rendez-vous sur le dépôt via le bouton en haut de page ou directement depuis <a href="https://github.com/devabeille/Catalogue-projets-stagesIA" target="_blank" style="color: var(--primary);">GitHub</a>.
+                        Cliquez sur le fichier que vous souhaitez modifier pour afficher son contenu.
                     </span>
                 </li>
 
                 <li>
                     <span class="step-number">2</span>
-                    <strong style="color: var(--text-primary);">Pour ajouter un nouveau fichier / tableau de bord</strong><br>
+                    <strong style="color: var(--text-primary);">Cliquer sur le Crayon ✏️</strong><br>
                     <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Allez dans le dossier <span class="code-inline">documents/journees-formation/</span>, créez un nouveau dossier (ex: <span class="code-inline">niv5/</span>) puis un fichier <span class="code-inline">index.html</span> à l'intérieur.
+                        En haut à droite du texte, appuyez sur l'icône d'édition.
                     </span>
+
+                    <figure class="doc-figure">
+                        <!-- AJOUTE TON IMAGE ICI (ex: img/02-bouton-crayon.png) -->
+                        <img src="img/02-bouton-crayon.png" alt="Bouton Crayon pour éditer sur GitHub">
+                        <figcaption>📸 Figure 2 : Emplacement du bouton Crayon (Edit this file)</figcaption>
+                    </figure>
                 </li>
 
                 <li>
                     <span class="step-number">3</span>
-                    <strong style="color: var(--text-primary);">Lier le CSS centralisé</strong><br>
+                    <strong style="color: var(--text-primary);">Enregistrer (Commit)</strong><br>
                     <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Assurez-vous que votre nouveau fichier HTML importe correctement le CSS commun en ajustant le chemin relatif dans le <span class="code-inline">&lt;head&gt;</span> :<br>
-                        <span class="code-inline">&lt;link rel="stylesheet" href="../../../css/main.css"&gt;</span>
-                    </span>
-                </li>
-
-                <li>
-                    <span class="step-number">4</span>
-                    <strong style="color: var(--text-primary);">Mettre à jour le Hub principal</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Pour que la nouvelle page soit accessible, éditez <span class="code-inline">index.html</span> à la racine et ajoutez une nouvelle carte (<span class="code-inline">&lt;a class="card" href="..."&gt;</span>) pointant vers votre nouveau fichier.
-                    </span>
-                </li>
-
-                <li>
-                    <span class="step-number">5</span>
-                    <strong style="color: var(--text-primary);">Valider (Commit)</strong><br>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Cliquez sur <strong>Commit changes...</strong> en haut à droite sur GitHub. La modification sera déployée en 1 à 2 minutes sur le site en ligne !
+                        Cliquez sur le bouton vert <strong>Commit changes...</strong> en haut à droite, ajoutez un petit mot explicatif et validez.
                     </span>
                 </li>
             </ul>
         </div>
 
-        <!-- CONSEILS & BONNES PRATIQUES -->
+        <!-- SECTION 3 : CRÉER FICHIER ET DOSSIER -->
         <div class="doc-section">
-            <h2>💡 Astuces & Styles des Badges</h2>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
-                Pour garder une uniformité visuelle dans vos tableaux de bord, utilisez les classes CSS prédéfinies :
+            <h2>📁 3. Ajouter un fichier ou créer un dossier par son nom</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                Vous n'avez pas besoin de créer des dossiers sur votre ordinateur : vous pouvez tout faire depuis le champ texte de GitHub.
             </p>
 
-            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                <span class="badge badge-outils">Outils / Cyan</span>
-                <span class="badge badge-presentations">Présentation / Violet</span>
-                <span class="badge badge-documents">Documents / Vert</span>
-                <span class="badge badge-pause">Pause / Jaune</span>
-                <span class="badge badge-atelier">Atelier / Orange</span>
+            <ul class="steps-list">
+                <li>
+                    <span class="step-number">1</span>
+                    <strong style="color: var(--text-primary);">Lancer la création</strong><br>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Cliquez sur <strong>Add file</strong> &gt; <strong>Create new file</strong>.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="step-number">2</span>
+                    <strong style="color: var(--text-primary);">Nommer le fichier et le dossier</strong><br>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Dans le champ <i>Name your file...</i>, tapez le nom du dossier suivi d'un slash <span class="code-inline">/</span>, puis le nom du fichier.
+                    </span>
+
+                    <figure class="doc-figure">
+                        <!-- AJOUTE TON IMAGE ICI (ex: img/03-nom-dossier.png) -->
+                        <img src="img/03-nom-dossier.png" alt="Saisie de nom avec slash pour créer un dossier">
+                        <figcaption>📸 Figure 3 : Taper "nom-dossier/fichier.md" crée automatiquement le dossier !</figcaption>
+                    </figure>
+                </li>
+
+                <li>
+                    <span class="step-number">3</span>
+                    <strong style="color: var(--text-primary);">Rédiger et Valider</strong><br>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Écrivez votre texte dans le grand rectangle en dessous, puis cliquez sur <strong>Commit changes...</strong> pour publier.
+                    </span>
+
+                    <figure class="doc-figure">
+                        <!-- AJOUTE TON IMAGE ICI (ex: img/04-commit-validation.png) -->
+                        <img src="img/04-commit-validation.png" alt="Fenêtre de confirmation de commit">
+                        <figcaption>📸 Figure 4 : Validation du Commit pour appliquer les changements</figcaption>
+                    </figure>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ARBORESCENCE TECHNIQUE -->
+        <div class="doc-section">
+            <h2>🗂️ 4. Structure des dossiers sur le projet</h2>
+            <div class="file-tree">
+                <span class="folder">Catalogue-projets-stagesIA/</span><br>
+                ├── <span class="file">index.html</span> <span class="comment">← Page d'accueil du Hub</span><br>
+                ├── <span class="file">doc.html</span> <span class="comment">← La présente documentation</span><br>
+                ├── <span class="folder">img/</span> <span class="comment">← Tes images de la doc (01-depot.png, etc.)</span><br>
+                ├── <span class="folder">css/</span><br>
+                │   └── <span class="file">main.css</span> <span class="comment">← Style global (House of Codesign)</span><br>
+                └── <span class="folder">documents/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">journees-formation/</span> <span class="comment">← Les tableaux de bord/planning</span>
             </div>
         </div>
 
