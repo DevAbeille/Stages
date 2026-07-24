@@ -203,7 +203,7 @@
     <!-- Header Principal -->
     <header class="header">
       <h1>Automatisation Google Drive & Reporting</h1>
-      <p>Un ensemble de 3 scripts interconnectés pour automatiser la création de dossiers, la centralisation des données et la génération de présentations clients.</p>
+      <p>Un ensemble de 4 scripts interconnectés pour automatiser la création de dossiers, la centralisation des données, la mise à jour des suivis et la génération de présentations clients.</p>
     </header>
 
     <main>
@@ -212,7 +212,7 @@
       <section style="margin-bottom: 2rem;">
         <div class="pipeline-step pipeline-intro">
           <h2>💡 À quoi sert ce pipeline ?</h2>
-          <p>Plutôt que d'effectuer à la main la création de répertoires, la saisie de suivis et la mise en page de diapositives, nous avons mis en place une chaîne automatisée en 3 étapes. Elle garantit l'homogénéité des dossiers, gagne un temps précieux et élimine les erreurs de saisie.</p>
+          <p>Plutôt que d'effectuer à la main la création de répertoires, la saisie de suivis et la mise en page de diapositives, nous avons mis en place une chaîne automatisée en 4 étapes. Elle garantit l'homogénéité des dossiers, gagne un temps précieux et élimine les erreurs de saisie.</p>
         </div>
       </section>
 
@@ -255,10 +255,30 @@
         </div>
       </div>
 
-      <!-- ÉTAPE 3 -->
+      <!-- ÉTAPE 3 (NOUVEAU BLOC) -->
       <div class="pipeline-step">
         <div class="step-header">
           <div class="step-number">3</div>
+          <h2 class="step-title">Extraction & Mise à Jour du Google Sheet</h2>
+        </div>
+        
+        <p><strong>En résumé :</strong> Un script dédié extrait les données les plus récentes du Fichier Synthèse afin de maintenir le Google Sheet de suivi parfaitement synchronisé.</p>
+        
+        <ul>
+          <li><strong>Ce qu'il fait :</strong> Il analyse la partie la plus récente du fichier synthèse, en extrait les informations clés et vient alimenter automatiquement les colonnes correspondantes dans le Google Sheet principal.</li>
+          <li><strong>Gain :</strong> Une garantie que les données du suivi général reflètent en temps réel les informations les plus fraîches de la synthèse.</li>
+        </ul>
+
+        <div class="links-block">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-link btn-script">💻 Voir le Script d'extraction ↗</a>
+          <a href="https://docs.google.com/spreadsheets/d/1bYSeNkTiMlqjuTpbcf5B3m9ohFN6yuu3ygCLXJnW3-4/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="btn-link btn-target">📊 Ouvrir le Google Sheet de suivi ↗</a>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 4 (ANCIENNE ÉTAPE 3) -->
+      <div class="pipeline-step">
+        <div class="step-header">
+          <div class="step-number">4</div>
           <h2 class="step-title">Génération Automatique de la Slide Projet</h2>
         </div>
         
